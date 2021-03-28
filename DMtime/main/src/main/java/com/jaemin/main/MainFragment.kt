@@ -17,8 +17,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toggle = ActionBarDrawerToggle(requireActivity(), binding.mainDrawerLayout,binding.mainToolbar,R.string.open, R.string.close)
-        binding.mainDrawerLayout.addDrawerListener(toggle)
+//        toggle = ActionBarDrawerToggle(requireActivity(), binding.mainDrawerLayout,binding.mainToolbar,R.string.open, R.string.close)
+//        binding.mainDrawerLayout.addDrawerListener(toggle)
     }
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMainBinding {
