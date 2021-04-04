@@ -2,13 +2,12 @@ package com.jaemin.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jaemin.base.BaseFragment
 import com.jaemin.login.databinding.FragmentLoginBinding
-import com.jaemin.main.MainActivity
+import com.jaemin.main.presentation.MainActivity
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
@@ -16,7 +15,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.button.setOnClickListener {
-            val mainIntent = Intent(requireActivity(),MainActivity::class.java)
+            val mainIntent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(mainIntent)
             requireActivity().finish()
         }
