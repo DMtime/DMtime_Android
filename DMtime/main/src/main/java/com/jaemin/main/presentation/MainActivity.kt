@@ -20,12 +20,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<MainFragment>(R.id.main_fragment)
-            }
-        }
+        supportFragmentManager.beginTransaction().replace(R.id.main_fragment,MainFragment())
+                .addToBackStack(null)
+                .commit()
         binding.navView.menu.getItem(11).setActionView(R.layout.menu_icon)
     }
 
