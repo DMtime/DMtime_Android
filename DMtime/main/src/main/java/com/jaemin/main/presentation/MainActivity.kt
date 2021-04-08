@@ -21,7 +21,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         supportFragmentManager.beginTransaction().replace(R.id.main_fragment,MainFragment())
-                .addToBackStack(null)
                 .commit()
         binding.navView.menu.getItem(11).setActionView(R.layout.menu_icon)
     }
