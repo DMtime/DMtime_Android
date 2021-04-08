@@ -7,7 +7,7 @@
 
 
     <TextView
-            android:id="@+id/popular_board_tv"
+            android:id="@+id/board_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -19,17 +19,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-            android:id="@+id/popular_board_dir_img"
+            android:id="@+id/board_dir_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:src="@drawable/ic_add"
-            app:layout_constraintBottom_toBottomOf="@+id/popular_board_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/board_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/popular_board_tv" />
+            app:layout_constraintTop_toTopOf="@+id/board_tv" />
 
     <View
-            android:id="@+id/popular_board_view"
+            android:id="@+id/board_view"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="20dp"
@@ -38,15 +38,15 @@
             android:background="#A6DE57"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/popular_board_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/board_tv" />
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popular_board_rv"
+            android:id="@+id/board_rv"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/popular_board_view"
-            app:layout_constraintStart_toStartOf="@+id/popular_board_view"
-            app:layout_constraintTop_toBottomOf="@+id/popular_board_view" />
+            app:layout_constraintEnd_toEndOf="@+id/board_view"
+            app:layout_constraintStart_toStartOf="@+id/board_view"
+            app:layout_constraintTop_toBottomOf="@+id/board_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>
