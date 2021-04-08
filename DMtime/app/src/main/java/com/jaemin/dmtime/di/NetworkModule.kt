@@ -2,8 +2,10 @@ package com.jaemin.dmtime.di
 
 import com.jaemin.dmtime.AuthorizationInterceptor
 import com.jaemin.dmtime.BuildConfig
+import com.jaemin.dmtime.SharedPreferencesManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -19,9 +21,14 @@ val networkModule = module {
             }
         }
     }
+    single { SharedPreferencesManager(androidContext()) }
+
+    single {
+        AuthorizationInterceptor(get())
+    }
     single {
         Retrofit.Builder()
-            .baseUrl("https://dminside.kro.kr/api/v1")
+            .baseUrl("http://dminside.kro.kr/api/v1/")
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(get<HttpLoggingInterceptor>())
