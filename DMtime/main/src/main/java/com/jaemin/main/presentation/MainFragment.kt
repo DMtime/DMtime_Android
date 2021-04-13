@@ -14,6 +14,7 @@ import com.jaemin.main.databinding.FragmentMainBinding
 import com.jaemin.main.domain.entity.DefaultGallery
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import splitties.toast.toast
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
@@ -29,6 +30,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
 
     override fun setDefaultGalleries(defaultGalleries: List<DefaultGallery>) {
         binding.defaultGalleriesRv.adapter = DefaultGalleriesAdapter(defaultGalleries)
+    }
+
+    override fun setDefaultGalleriesFailed() {
+        toast("글을 불러오지 못했어요")
     }
 
     override fun onPause() {
