@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaemin.main.databinding.ItemMainBoardBinding
 import com.jaemin.main.domain.entity.DefaultGallery
-import com.jaemin.main.domain.entity.Post
 
 class DefaultGalleriesAdapter(private val defaultGalleries : List<DefaultGallery>) : RecyclerView.Adapter<DefaultGalleriesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultGalleriesViewHolder {
