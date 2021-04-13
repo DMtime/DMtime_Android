@@ -1,7 +1,7 @@
 package com.jaemin.main.data.remote
 
 import com.jaemin.main.data.dto.response.GalleryResponse
-import com.jaemin.main.data.dto.response.PostsResponse
+import com.jaemin.posts.data.dto.response.PostsResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

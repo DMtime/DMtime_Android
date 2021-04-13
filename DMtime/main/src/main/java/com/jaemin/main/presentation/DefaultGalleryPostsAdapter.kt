@@ -3,12 +3,11 @@ package com.jaemin.main.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jaemin.main.databinding.ItemMainBoardBinding
 import com.jaemin.main.databinding.ItemPostBinding
-import com.jaemin.main.domain.entity.DefaultGallery
-import com.jaemin.main.domain.entity.Post
+import com.jaemin.posts.domain.entity.Post
+import com.jaemin.posts.domain.entity.PostPreview
 
-class DefaultGalleryPostsAdapter(private val defaultPosts : List<Post>) : RecyclerView.Adapter<DefaultGalleryPostsViewHolder>() {
+class DefaultGalleryPostsAdapter(private val defaultPosts : List<PostPreview>) : RecyclerView.Adapter<DefaultGalleryPostsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultGalleryPostsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemPostBinding.inflate(inflater, parent, false)
@@ -22,7 +21,7 @@ class DefaultGalleryPostsAdapter(private val defaultPosts : List<Post>) : Recycl
     override fun getItemCount(): Int = defaultPosts.size
 }
 class DefaultGalleryPostsViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(post: Post){
+    fun bind(post: PostPreview){
         binding.postLayout.setOnClickListener {
 
         }

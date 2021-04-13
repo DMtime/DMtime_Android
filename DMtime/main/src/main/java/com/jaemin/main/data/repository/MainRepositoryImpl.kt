@@ -1,10 +1,10 @@
 package com.jaemin.main.data.repository
 
 import com.jaemin.main.data.dto.response.GalleryResponse
-import com.jaemin.main.data.dto.response.toEntity
 import com.jaemin.main.data.remote.MainApi
 import com.jaemin.main.domain.entity.DefaultGallery
 import com.jaemin.main.domain.repository.MainRepository
+import com.jaemin.posts.data.dto.response.toEntity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
