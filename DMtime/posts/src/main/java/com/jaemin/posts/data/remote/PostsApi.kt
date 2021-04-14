@@ -15,7 +15,7 @@ interface PostsApi {
     fun getGalleryPosts(
         @Query("per-page") perPage: Int,
         @Query("page") page: Int,
-        @Query("gallery-id") galleryId: Int
+        @Query("gallery-id") galleryId: String
     ): Single<PostsResponse>
 
     @GET("board/posts/{post-id}")

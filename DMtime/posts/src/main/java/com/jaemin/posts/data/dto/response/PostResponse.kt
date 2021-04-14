@@ -3,7 +3,6 @@ package com.jaemin.posts.data.dto.response
 import com.google.gson.annotations.SerializedName
 import com.jaemin.gallery.domain.entity.Gallery
 import com.jaemin.posts.domain.entity.Post
-import com.jaemin.posts.domain.entity.Uploader
 
 data class PostResponse(
     val content: String,
