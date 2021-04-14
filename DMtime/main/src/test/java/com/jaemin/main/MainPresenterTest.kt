@@ -7,6 +7,7 @@ import com.jaemin.main.domain.usecase.GetDefaultGalleriesUseCase
 import com.jaemin.main.presentation.MainContract
 import com.jaemin.main.presentation.MainPresenter
 import io.reactivex.rxjava3.core.Single
+import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -24,11 +25,15 @@ class MainPresenterTest : BaseTest(){
 
     private lateinit var mainPresenter: MainContract.Presenter
 
+    @Before
+    override fun before(){
+        super.before()
+        getDefaultGalleriesUseCase = GetDefaultGalleriesUseCase(mainRepository)
+        mainPresenter = MainPresenter(mainView, getDefaultGalleriesUseCase)
+    }
 
     @Test
     fun setDefaultGalleriesSuccess() {
-        getDefaultGalleriesUseCase = GetDefaultGalleriesUseCase(mainRepository)
-        mainPresenter = MainPresenter(mainView, getDefaultGalleriesUseCase)
         val defaultGalleries = listOf(DefaultGallery(1, "d", listOf()))
         `when`(mainRepository.getDefaultGalleries()).thenReturn(Single.just(defaultGalleries))
 
@@ -39,12 +44,17 @@ class MainPresenterTest : BaseTest(){
 
     @Test
     fun setDefaultGalleriesFailed() {
-        getDefaultGalleriesUseCase = GetDefaultGalleriesUseCase(mainRepository)
-        mainPresenter = MainPresenter(mainView, getDefaultGalleriesUseCase)
         `when`(mainRepository.getDefaultGalleries()).thenReturn(Single.error(Exception("testException")))
 
         mainPresenter.onCreate()
 
         verify(mainView).setDefaultGalleriesFailed()
+    }
+
+    @Test
+    fun onClickPostSuccess() {
+        mainPresenter.onClickPost(1)
+
+        verify(mainView).moveToPost(1)
     }
 }
