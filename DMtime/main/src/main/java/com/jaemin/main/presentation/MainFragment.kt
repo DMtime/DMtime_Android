@@ -1,15 +1,12 @@
 package com.jaemin.main.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.jaemin.base.BaseFragment
+import com.jaemin.gallery.presentation.view.PostFragment
 import com.jaemin.main.R
-import com.jaemin.main.data.dto.response.DefaultGalleryResponse
 import com.jaemin.main.databinding.FragmentMainBinding
 import com.jaemin.main.domain.entity.DefaultGallery
 import org.koin.android.ext.android.inject
@@ -19,9 +16,10 @@ import splitties.toast.toast
 
 class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
 
-    private val presenter: MainPresenter by inject { parametersOf(this)  }
+    private val presenter: MainContract.Presenter by inject { parametersOf(this) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.defaultGalleriesRv.adapter = DefaultGalleriesAdapter(presenter)
         presenter.onCreate()
     }
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMainBinding {
@@ -29,11 +27,26 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
     }
 
     override fun setDefaultGalleries(defaultGalleries: List<DefaultGallery>) {
-        binding.defaultGalleriesRv.adapter = DefaultGalleriesAdapter(defaultGalleries)
+        if (binding.defaultGalleriesRv.adapter != null && !defaultGalleries.isNullOrEmpty()) {
+            (binding.defaultGalleriesRv.adapter as DefaultGalleriesAdapter).updateItems(
+                defaultGalleries
+            )
+        }
     }
 
     override fun setDefaultGalleriesFailed() {
         toast("글을 불러오지 못했어요")
+    }
+
+    override fun moveToPost(postId: Int) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_drawer_layout, PostFragment().apply {
+                arguments = Bundle().apply {
+                    putInt("postId", postId)
+                }
+            })
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onPause() {
