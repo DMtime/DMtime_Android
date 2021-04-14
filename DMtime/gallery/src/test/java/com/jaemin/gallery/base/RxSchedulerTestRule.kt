@@ -1,4 +1,4 @@
-package com.jaemin.main
+package com.jaemin.gallery.base
 
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.plugins.RxJavaPlugins

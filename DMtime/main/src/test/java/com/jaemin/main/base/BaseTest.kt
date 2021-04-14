@@ -1,4 +1,4 @@
-package com.jaemin.main
+package com.jaemin.main.base
 
 import org.junit.Before
 import org.junit.ClassRule
