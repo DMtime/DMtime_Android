@@ -4,7 +4,7 @@ import com.jaemin.gallery.domain.entity.PostPreview
 
 
 data class DefaultGallery(
-    val id: Int,
+    val id: String,
     val name: String,
     val posts: List<PostPreview>
 )
