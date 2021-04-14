@@ -34,12 +34,12 @@ class MainPresenterTest : BaseTest(){
 
     @Test
     fun setDefaultGalleriesSuccess() {
-        val defaultGalleries = listOf(DefaultGallery(1, "d", listOf()))
+        val defaultGalleries = listOf(DefaultGallery("free", "d", listOf()))
         `when`(mainRepository.getDefaultGalleries()).thenReturn(Single.just(defaultGalleries))
 
         mainPresenter.onCreate()
 
-        verify(mainView).setDefaultGalleries(listOf(DefaultGallery(1, "d", listOf())))
+        verify(mainView).setDefaultGalleries(listOf(DefaultGallery("free", "d", listOf())))
     }
 
     @Test
