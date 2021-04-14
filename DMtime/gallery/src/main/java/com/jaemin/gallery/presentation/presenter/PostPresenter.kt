@@ -13,7 +13,6 @@ class PostPresenter(
     override fun onCreate() {
         getPostUseCase.execute(postView.getPostId(), object : DisposableSingleObserver<Post>() {
             override fun onSuccess(post: Post) {
-                Log.d("ppap", "ppap")
                 postView.setPost(post)
             }
 
