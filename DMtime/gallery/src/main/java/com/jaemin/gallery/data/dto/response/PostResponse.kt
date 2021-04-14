@@ -1,7 +1,6 @@
 package com.jaemin.gallery.data.dto.response
 
 import com.google.gson.annotations.SerializedName
-import com.jaemin.gallery.domain.entity.Gallery
 import com.jaemin.gallery.domain.entity.Post
 import com.jaemin.gallery.domain.entity.Uploader
 
@@ -18,7 +17,7 @@ data class PostResponse(
     @SerializedName("posted_datetime")
     val postedDatetime: String,
     @SerializedName("posted_gallery")
-    val postedGallery: Gallery,
+    val postedGallery: GalleryResponse,
     val title: String,
     val uploader: Uploader,
     val views: Int
@@ -32,7 +31,7 @@ fun PostResponse.toEntity() = Post(
     this.numberOfLikes,
     this.numberOfDislikes,
     this.postedDatetime,
-    this.postedGallery,
+    this.postedGallery.toEntity(),
     this.title,
     this.uploader,
     this.views

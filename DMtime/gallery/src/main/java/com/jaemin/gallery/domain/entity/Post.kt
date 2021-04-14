@@ -1,7 +1,5 @@
 package com.jaemin.gallery.domain.entity
 
-import com.jaemin.gallery.domain.entity.Gallery
-
 
 data class Post(
     val content: String,

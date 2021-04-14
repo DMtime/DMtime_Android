@@ -9,6 +9,7 @@ import com.jaemin.gallery.domain.usecase.GetPostsUseCase
 import com.jaemin.gallery.presentation.contract.GalleryContract
 import com.jaemin.gallery.presentation.presenter.GalleryPresenter
 import io.reactivex.rxjava3.core.Single
+import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -25,7 +26,12 @@ class GalleryPresenterTest : BaseTest() {
     @Mock
     private lateinit var galleryRepository: GalleryRepository
 
-
+    @Before
+    override fun before() {
+        super.before()
+        getPostsUseCase = GetPostsUseCase(galleryRepository)
+        galleryPresenter = GalleryPresenter(galleryView, getPostsUseCase)
+    }
     @Test
     fun getPostsSuccess() {
         val posts = Posts(
@@ -36,10 +42,7 @@ class GalleryPresenterTest : BaseTest() {
                 )
             )
         )
-        getPostsUseCase = GetPostsUseCase(galleryRepository)
-        galleryPresenter = GalleryPresenter(galleryView, getPostsUseCase)
-
-
+        
         `when`(galleryRepository.getPosts(4, 1, "free")).thenReturn(Single.just(posts))
 
         `when`(galleryView.getGalleryId()).thenReturn("free")
@@ -50,9 +53,6 @@ class GalleryPresenterTest : BaseTest() {
 
     @Test
     fun getPostsFail() {
-        getPostsUseCase = GetPostsUseCase(galleryRepository)
-        galleryPresenter = GalleryPresenter(galleryView, getPostsUseCase)
-
 
         `when`(galleryRepository.getPosts(4, 1, "free")).thenReturn(Single.error(Exception("testException")))
 

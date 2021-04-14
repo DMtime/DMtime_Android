@@ -3,8 +3,7 @@ package com.jaemin.main.presentation
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
+import androidx.drawerlayout.widget.DrawerLayout
 import com.jaemin.base.BaseActivity
 import com.jaemin.main.R
 import com.jaemin.main.databinding.ActivityMainBinding
@@ -19,9 +18,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         supportActionBar!!.title = ""
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        supportFragmentManager.beginTransaction().replace(R.id.main_fragment,MainFragment())
-                .commit()
+        binding.mainDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        supportFragmentManager.beginTransaction().replace(R.id.main_fragment, MainFragment())
+            .commit()
         binding.navView.menu.getItem(11).setActionView(R.layout.menu_icon)
     }
 
