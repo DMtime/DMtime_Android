@@ -3,9 +3,8 @@ package com.jaemin.main.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.jaemin.gallery.domain.entity.PostPreview
 import com.jaemin.main.databinding.ItemPostBinding
-import com.jaemin.posts.domain.entity.Post
-import com.jaemin.posts.domain.entity.PostPreview
 
 class DefaultGalleryPostsAdapter(private val defaultPosts : List<PostPreview>) : RecyclerView.Adapter<DefaultGalleryPostsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultGalleryPostsViewHolder {

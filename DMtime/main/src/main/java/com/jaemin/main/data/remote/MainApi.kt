@@ -1,7 +1,7 @@
 package com.jaemin.main.data.remote
 
+import com.jaemin.gallery.data.dto.response.PostsResponse
 import com.jaemin.main.data.dto.response.GalleryResponse
-import com.jaemin.posts.data.dto.response.PostsResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,7 +14,7 @@ interface MainApi {
     @GET("board/posts")
     fun getGalleryPosts(@Query("per-page") perPage : Int,@Query("page") page : Int,@Query("gallery-id") galleryId : Int) : Single<PostsResponse>
 
-    @GET("users/{username}")
-    fun getUserInfo(@Path("username") username : String) : Single<PostsResponse>
+//    @GET("users/{username}")
+//    fun getUserInfo(@Path("username") username : String) : Single<PostsResponse>
 
 }

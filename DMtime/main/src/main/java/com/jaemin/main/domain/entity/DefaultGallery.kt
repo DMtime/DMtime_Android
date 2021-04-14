@@ -1,6 +1,6 @@
 package com.jaemin.main.domain.entity
 
-import com.jaemin.posts.domain.entity.PostPreview
+import com.jaemin.gallery.domain.entity.PostPreview
 
 
 data class DefaultGallery(
