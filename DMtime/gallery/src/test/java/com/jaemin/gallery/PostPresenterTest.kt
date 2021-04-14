@@ -1,8 +1,8 @@
 package com.jaemin.gallery
 
 import com.jaemin.gallery.base.BaseTest
+import com.jaemin.gallery.domain.entity.Gallery
 import com.jaemin.gallery.domain.entity.Post
-import com.jaemin.gallery.domain.entity.PostedGallery
 import com.jaemin.gallery.domain.entity.Uploader
 import com.jaemin.gallery.domain.repository.PostRepository
 import com.jaemin.gallery.domain.usecase.GetPostUseCase
@@ -38,7 +38,7 @@ class PostPresenterTest : BaseTest(){
         `when`(postView.getPostId()).thenReturn(1)
 
         val post =Post("test",false,postView.getPostId(), listOf(),1,
-            1,"dd",PostedGallery("free","test"),"test",
+            1,"dd", Gallery("test","test","test",1),"test",
             Uploader("test"),1)
         `when`(postRepository.getPost(postView.getPostId())).thenReturn(Single.just(post))
 
