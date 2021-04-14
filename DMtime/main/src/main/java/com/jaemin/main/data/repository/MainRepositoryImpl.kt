@@ -1,7 +1,7 @@
 package com.jaemin.main.data.repository
 
+import com.jaemin.gallery.data.dto.response.toEntity
 import com.jaemin.main.data.dto.response.GalleryResponse
-import com.jaemin.main.data.dto.response.toEntity
 import com.jaemin.main.data.remote.MainApi
 import com.jaemin.main.domain.entity.DefaultGallery
 import com.jaemin.main.domain.repository.MainRepository
