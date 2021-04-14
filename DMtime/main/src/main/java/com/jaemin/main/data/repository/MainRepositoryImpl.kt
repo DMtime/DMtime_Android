@@ -21,7 +21,7 @@ class MainRepositoryImpl(private val mainApi: MainApi) : MainRepository {
 
         val defaultGallery : Single<List<DefaultGallery>>  =Single.zip(galleriesSingle, galleriesSingle.flatMap {
             (Observable.fromIterable(it).flatMap { gallery->
-                mainApi.getGalleryPosts(4, 0, gallery.id).toObservable()
+                mainApi.getGalleryPosts(4, 1, gallery.id).toObservable()
             }).toList()
 
         },{gallery, posts->
