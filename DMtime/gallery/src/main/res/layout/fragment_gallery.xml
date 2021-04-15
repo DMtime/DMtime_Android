@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        tools:listitem="@layout/post_item"
+        tools:listitem="@layout/item_post"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@ open class BaseTest {
     }
 
     @Before
-    fun before() {
+    open fun before() {
         MockitoAnnotations.openMocks(this)
     }
 }

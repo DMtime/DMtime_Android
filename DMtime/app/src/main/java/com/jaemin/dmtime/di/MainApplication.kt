@@ -9,16 +9,16 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketException
 
-class MainApplication() : Application(){
+class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         RxJavaPlugins.setErrorHandler {
-            if (it is UndeliverableException){
+            if (it is UndeliverableException) {
 
             }
             if (it is HttpException)
                 return@setErrorHandler
-            if (it is IOException ||it is SocketException)
+            if (it is IOException || it is SocketException)
                 return@setErrorHandler
             if (it is InterruptedException)
                 return@setErrorHandler
@@ -39,7 +39,9 @@ class MainApplication() : Application(){
             modules(
                 listOf(
                     networkModule,
-                    mainModule
+                    mainModule,
+                    galleryModule,
+                    postModule
                 )
             )
         }
