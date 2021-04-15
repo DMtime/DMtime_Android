@@ -6,36 +6,43 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaemin.main.databinding.ItemMainBoardBinding
 import com.jaemin.main.domain.entity.DefaultGallery
-import com.jaemin.main.domain.entity.Post
 
-class DefaultGalleriesAdapter(private val defaultGalleries : List<DefaultGallery>) : RecyclerView.Adapter<DefaultGalleriesViewHolder>() {
+class DefaultGalleriesAdapter(
+    private val mainPresenter: MainContract.Presenter,
+    private val defaultGalleries: MutableList<DefaultGallery> = mutableListOf(),
+) :
+    RecyclerView.Adapter<DefaultGalleriesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultGalleriesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemMainBoardBinding.inflate(inflater, parent, false)
-        return DefaultGalleriesViewHolder(binding)
+        return DefaultGalleriesViewHolder(binding, mainPresenter)
     }
 
     override fun onBindViewHolder(holder: DefaultGalleriesViewHolder, position: Int) {
         holder.bind(defaultGalleries[position])
     }
-//    fun updateItems(posts: List<Post>){
-//        posts.forEach {
-//            defaultGalleries.forEach { gallery->
-//                gallery.posts.addAll()
-//            }
-//        }
-//
-//    }
+
+    fun updateItems(posts: List<DefaultGallery>) {
+        defaultGalleries.clear()
+        defaultGalleries.addAll(posts)
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int = defaultGalleries.size
 }
-class DefaultGalleriesViewHolder(private val binding: ItemMainBoardBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(defaultGallery: DefaultGallery){
+
+class DefaultGalleriesViewHolder(
+    private val binding: ItemMainBoardBinding,
+    private val mainPresenter: MainContract.Presenter
+) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(defaultGallery: DefaultGallery) {
         binding.boardDirImg.setOnClickListener {
 
         }
         binding.boardTv.text = defaultGallery.name
-        binding.boardRv.layoutManager = LinearLayoutManager(binding.root.context,LinearLayoutManager.VERTICAL,false)
-        binding.boardRv.adapter = DefaultGalleryPostsAdapter(defaultGallery.posts)
+        binding.boardRv.layoutManager =
+            LinearLayoutManager(binding.root.context, LinearLayoutManager.VERTICAL, false)
+        binding.boardRv.adapter = DefaultGalleryPostsAdapter(defaultGallery.posts, mainPresenter)
         (binding.boardRv.adapter as DefaultGalleryPostsAdapter).notifyDataSetChanged()
 
     }

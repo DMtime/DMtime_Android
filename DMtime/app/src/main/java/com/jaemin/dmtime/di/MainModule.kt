@@ -15,7 +15,7 @@ val mainModule = module {
         retrofit.create(MainApi::class.java)
 
     factory { provideMainApi(get()) }
-    factory { (view: MainContract.View) -> MainPresenter(view, get()) }
+    factory<MainContract.Presenter> { (view: MainContract.View) -> MainPresenter(view, get()) }
     factory<MainRepository> { MainRepositoryImpl(get()) }
     factory { GetDefaultGalleriesUseCase(get()) }
 

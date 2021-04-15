@@ -1,4 +1,4 @@
-include ':posts'
+include ':gallery'
 include ':main'
 include ':login'
 include ':login'
