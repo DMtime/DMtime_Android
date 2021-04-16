@@ -41,7 +41,8 @@ class MainApplication : Application() {
                     networkModule,
                     mainModule,
                     galleryModule,
-                    postModule
+                    postModule,
+                    commentsModule
                 )
             )
         }
