@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 
@@ -35,14 +36,13 @@ class PostPresenterTest : BaseTest(){
     @Test
     fun getPostSuccess(){
 
-        `when`(postView.getPostId()).thenReturn(1)
 
-        val post =Post("test",false,postView.getPostId(), listOf(),1,
+        val post =Post("test",false,1, listOf(),1,
             1,"dd", Gallery("test","test","test",1),"test",
             Uploader("test"),1)
-        `when`(postRepository.getPost(postView.getPostId())).thenReturn(Single.just(post))
+        `when`(postRepository.getPost(Mockito.anyInt())).thenReturn(Single.just(post))
 
-        postPresenter.onCreate()
+        postPresenter.onCreate(Mockito.anyInt())
 
         verify(postView).setPost(post)
 
@@ -51,11 +51,9 @@ class PostPresenterTest : BaseTest(){
     @Test
     fun getPostFailed(){
 
-        `when`(postView.getPostId()).thenReturn(1)
+        `when`(postRepository.getPost(1)).thenReturn(Single.error(Exception("testException")))
 
-        `when`(postRepository.getPost(postView.getPostId())).thenReturn(Single.error(Exception("testException")))
-
-        postPresenter.onCreate()
+        postPresenter.onCreate(1)
 
         verify(postView).showErrorScreen()
 

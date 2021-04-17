@@ -7,14 +7,13 @@ interface PostContract {
 
         fun setPost(post: Post)
 
-        fun getPostId(): Int
 
         fun showErrorScreen()
 
     }
 
     interface Presenter {
-        fun onCreate()
+        fun onCreate(postId: Int)
 
         fun onClickLikeButton()
 
