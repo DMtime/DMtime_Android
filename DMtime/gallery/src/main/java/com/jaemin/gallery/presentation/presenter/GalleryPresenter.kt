@@ -16,7 +16,7 @@ class GalleryPresenter(
     override fun onCreate() {
         getPostsUseCase.execute(Pair(page, galleryId), object : DisposableSingleObserver<Posts>(){
             override fun onSuccess(posts: Posts) {
-                galleryView.setPosts(posts)
+                galleryView.setPosts(posts.posts)
             }
             override fun onError(e: Throwable) {
                 galleryView.showGetPostsFailedMessage()
@@ -28,7 +28,5 @@ class GalleryPresenter(
 
     }
 
-    override fun onClickGallery() {
-    }
 
 }

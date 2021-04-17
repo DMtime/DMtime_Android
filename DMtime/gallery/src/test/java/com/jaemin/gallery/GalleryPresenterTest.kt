@@ -1,6 +1,7 @@
 package com.jaemin.gallery
 
 import com.jaemin.gallery.base.BaseTest
+import com.jaemin.gallery.domain.entity.Gallery
 import com.jaemin.gallery.domain.entity.PostPreview
 import com.jaemin.gallery.domain.entity.Posts
 import com.jaemin.gallery.domain.entity.Uploader
@@ -32,29 +33,36 @@ class GalleryPresenterTest : BaseTest() {
         getPostsUseCase = GetPostsUseCase(galleryRepository)
         galleryPresenter = GalleryPresenter(galleryView, getPostsUseCase)
     }
+
     @Test
     fun getPostsSuccess() {
         val posts = Posts(
             1, listOf(
                 PostPreview(
-                    1, 1, 2, "", "",
-                    Uploader("dd"), 1, false
+                    1, "none", 2, Uploader("dd", "test"), "test",
+                    1, "test", false, false, 1, Gallery("test", "test", "test", 1), 1
                 )
             )
         )
-        
+
         `when`(galleryRepository.getPosts(4, 1, "free")).thenReturn(Single.just(posts))
 
         `when`(galleryView.getGalleryId()).thenReturn("free")
 
         galleryPresenter.onCreate()
-        verify(galleryView).setPosts(posts)
+        verify(galleryView).setPosts(posts.posts)
     }
 
     @Test
     fun getPostsFail() {
 
-        `when`(galleryRepository.getPosts(4, 1, "free")).thenReturn(Single.error(Exception("testException")))
+        `when`(
+            galleryRepository.getPosts(
+                4,
+                1,
+                "free"
+            )
+        ).thenReturn(Single.error(Exception("testException")))
 
         `when`(galleryView.getGalleryId()).thenReturn("free")
 

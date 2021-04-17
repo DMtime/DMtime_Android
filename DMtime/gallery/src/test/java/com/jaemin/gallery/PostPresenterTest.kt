@@ -39,7 +39,7 @@ class PostPresenterTest : BaseTest(){
 
         val post =Post("test",false,1, listOf(),1,
             1,"dd", Gallery("test","test","test",1),"test",
-            Uploader("test"),1)
+            Uploader("test","test"),1)
         `when`(postRepository.getPost(Mockito.anyInt())).thenReturn(Single.just(post))
 
         postPresenter.onCreate(Mockito.anyInt())

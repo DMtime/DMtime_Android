@@ -1,13 +1,12 @@
 package com.jaemin.gallery.presentation.contract
 
-import com.jaemin.gallery.domain.entity.Posts
+import com.jaemin.gallery.domain.entity.PostPreview
 
 interface GalleryContract {
     interface View{
-        fun setPosts(posts: Posts)
+        fun setPosts(posts: List<PostPreview>)
 
         fun showGetPostsFailedMessage()
-
 
         fun getGalleryId() : String
 
@@ -18,8 +17,6 @@ interface GalleryContract {
         fun onCreate()
 
         fun onClickPost(postId: Int)
-
-        fun onClickGallery()
 
 
     }
