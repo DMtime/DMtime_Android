@@ -28,6 +28,10 @@ class MainPresenter(
         mainView.moveToPost(postId)
     }
 
+    override fun onClickGallery(galleryId: String) {
+        mainView.moveToGallery(galleryId)
+    }
+
     override fun onPause() {
         getDefaultGalleriesUseCase.dispose()
     }

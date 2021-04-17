@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jaemin.base.BaseFragment
+import com.jaemin.gallery.presentation.view.GalleryFragment
 import com.jaemin.gallery.presentation.view.PostFragment
 import com.jaemin.main.R
 import com.jaemin.main.databinding.FragmentMainBinding
@@ -43,6 +44,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
             .replace(R.id.main_drawer_layout, PostFragment().apply {
                 arguments = Bundle().apply {
                     putInt("postId", postId)
+                }
+            })
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun moveToGallery(galleryId: String) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_drawer_layout, GalleryFragment().apply {
+                arguments = Bundle().apply {
+                    putString("galleryId", galleryId)
                 }
             })
             .addToBackStack(null)

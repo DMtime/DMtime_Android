@@ -37,7 +37,7 @@ class DefaultGalleriesViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(defaultGallery: DefaultGallery) {
         binding.boardDirImg.setOnClickListener {
-
+            mainPresenter.onClickGallery(defaultGallery.id)
         }
         binding.boardTv.text = defaultGallery.name
         binding.boardRv.layoutManager =
