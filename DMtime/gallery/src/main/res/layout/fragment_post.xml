@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/colorGray"
-                    android:text="글쓴이"
+                    android:text="@string/post_writer_tv"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -129,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="날짜"
+                    android:text="@string/post_date_tv"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/view"
@@ -165,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    android:text="추천수"
+                    android:text="@string/post_recommendation_tv"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/post_recommendation_detail_tv"
@@ -348,7 +348,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="8dp"
-                        android:text="신고"
+                        android:text="@string/comment_report_tv"
                         android:textColor="@color/black"
                         android:textSize="10sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -358,10 +358,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView2"
+                android:id="@+id/comments_rv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@id/guideline3"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/post_recommendation_layout">
@@ -372,11 +373,11 @@
                 android:id="@+id/post_comment_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/dark_gray_border"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView2">
+                app:layout_constraintTop_toBottomOf="@+id/comments_rv">
 
                 <EditText
                     android:id="@+id/post_comment_et"
@@ -388,7 +389,7 @@
                     android:backgroundTint="@android:color/transparent"
                     android:focusable="true"
                     android:gravity="top"
-                    android:hint="댓글을 입력하세요."
+                    android:hint="@string/post_comment_et"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -400,7 +401,10 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="9dp"
-                    android:text="등록"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:text="@string/post_comment_confirm_tv"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

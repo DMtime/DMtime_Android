@@ -3,6 +3,7 @@
     <color name="colorBlack">#FF000000</color>
     <color name="colorLightGray">#FFB7B7B7</color>
     <color name="colorGray">#FF8D8D8D</color>
+    <color name="colorRed">#FFFF0000</color>
     <color name="gray_1">#FFFAFAFA</color>
     <color name="gray_2">#FFC9C9C9</color>
     <color name="purple_200">#FFBB86FC</color>

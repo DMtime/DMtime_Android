@@ -1,4 +1,12 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comment_add_tv">댓글달기</string>
+    <string name="comment_report_tv">신고</string>
+    <string name="post_writer_tv">글쓴이</string>
+    <string name="post_date_tv">날짜</string>
+    <string name="post_recommendation_tv">추천수</string>
+    <string name="post_comment_et">댓글을 입력하세요.</string>
+    <string name="post_comment_confirm_tv">등록</string>
+    <string name="attach_picture_btn">사진 첨부</string>
 </resources>
