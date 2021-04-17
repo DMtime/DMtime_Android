@@ -54,7 +54,12 @@ class MainPresenterTest : BaseTest(){
     @Test
     fun onClickPostSuccess() {
         mainPresenter.onClickPost(1)
-
         verify(mainView).moveToPost(1)
+    }
+
+    @Test
+    fun onClickGallerySuccess() {
+        mainPresenter.onClickGallery("free")
+        verify(mainView).moveToGallery("free")
     }
 }
