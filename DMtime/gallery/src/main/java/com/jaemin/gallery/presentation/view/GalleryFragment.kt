@@ -6,10 +6,44 @@ import android.view.View
 import android.view.ViewGroup
 import com.jaemin.base.BaseFragment
 import com.jaemin.gallery.databinding.FragmentGalleryBinding
+import com.jaemin.gallery.domain.entity.PostPreview
+import com.jaemin.gallery.presentation.contract.GalleryContract
+import com.jaemin.gallery.presentation.view.adapter.PostsAdapter
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 
-class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
+class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.View {
+    private val galleryPresenter : GalleryContract.Presenter by inject { parametersOf(this) }
+
+    private lateinit var postsAdapter: PostsAdapter
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        postsAdapter = PostsAdapter(galleryPresenter)
+        binding.postsRv.adapter = postsAdapter
+        binding.galleryNameTv.text = getGalleryId()
+        galleryPresenter.onCreate()
+
+    }
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentGalleryBinding {
         return FragmentGalleryBinding.inflate(inflater, container, false)
     }
+
+    override fun setPosts(posts: List<PostPreview>) {
+        postsAdapter.updateItems(posts)
+    }
+
+    override fun showGetPostsFailedMessage() {
+    }
+
+    override fun getGalleryId(): String {
+        return requireArguments().getString("galleryId") ?: ""
+    }
+
+    override fun moveToPost() {
+
+    }
+
 }
