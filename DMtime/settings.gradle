@@ -1,5 +1,4 @@
-include ':posts'
-include ':main'
+include ':features'
 include ':login'
 include ':login'
 include ':base'
