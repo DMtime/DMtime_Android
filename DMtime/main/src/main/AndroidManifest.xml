@@ -3,7 +3,7 @@
     package="com.jaemin.main">
 
     <application>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name="com.jaemin.features.presentation.main.MainActivity"></activity>
     </application>
 
 </manifest>
