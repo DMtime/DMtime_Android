@@ -4,6 +4,7 @@ package com.jaemin.features.data.remote
 import com.jaemin.features.data.dto.request.PatchedPostRequest
 import com.jaemin.features.data.dto.request.WrittenPostRequest
 import com.jaemin.features.data.dto.response.PostResponse
+import com.jaemin.features.domain.entity.Image
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import okhttp3.MultipartBody
@@ -20,10 +21,10 @@ interface PostApi {
         @Body PatchedPostRequest: PatchedPostRequest
     ): Completable
 
-    @GET("board/posts")
-    fun writePost(@Body writtenPostRequest: WrittenPostRequest): Completable
+    @POST("board/posts")
+    fun writePost(@Query("gallery-id") galleryId : String,@Body writtenPostRequest: WrittenPostRequest): Completable
 
     @Multipart
     @POST("images")
-    fun postImage(@Part image: MultipartBody.Part): Single<String>
+    fun postImage(@Part image: MultipartBody.Part): Single<Image>
 }
