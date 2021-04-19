@@ -8,8 +8,9 @@ import com.jaemin.base.BaseFragment
 import com.jaemin.features.R
 import com.jaemin.features.databinding.FragmentGalleryBinding
 import com.jaemin.features.domain.entity.PostPreview
-import com.jaemin.features.presentation.gallery.PostsAdapter
+import com.jaemin.features.presentation.gallery.adapter.PostsAdapter
 import com.jaemin.features.presentation.gallery.contract.GalleryContract
+import com.jaemin.features.presentation.post.view.PostFragment
 import com.jaemin.features.presentation.post.view.WritePostFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -27,7 +28,12 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         binding.postsRv.adapter = postsAdapter
         binding.writePostBtn.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.main_drawer_layout, WritePostFragment())
+                .replace(R.id.main_drawer_layout, WritePostFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("galleryId", getGalleryId())
+                    }
+                }
+                )
                 .addToBackStack(null)
                 .commit()
         }
@@ -50,7 +56,15 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         return requireArguments().getString("galleryId") ?: ""
     }
 
-    override fun moveToPost() {
+    override fun moveToPost(postId : Int) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_drawer_layout, PostFragment().apply {
+                arguments = Bundle().apply {
+                    putInt("postId", postId)
+                }
+            })
+            .addToBackStack(null)
+            .commit()
 
     }
 

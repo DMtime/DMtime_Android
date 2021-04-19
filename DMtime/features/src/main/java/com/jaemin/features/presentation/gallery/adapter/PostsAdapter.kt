@@ -1,4 +1,4 @@
-package com.jaemin.features.presentation.gallery
+package com.jaemin.features.presentation.gallery.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -32,7 +32,7 @@ class PostsViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: PostPreview) {
         binding.postLayout.setOnClickListener {
-            galleryPresenter.onClickPost(adapterPosition)
+            galleryPresenter.onClickPost(post.id)
         }
         binding.postTitleTv.text = post.title
         binding.postWriterNameTv.text = post.uploader.username

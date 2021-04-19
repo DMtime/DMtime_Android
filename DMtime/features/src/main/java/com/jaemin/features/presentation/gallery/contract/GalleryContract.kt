@@ -10,7 +10,7 @@ interface GalleryContract {
 
         fun getGalleryId() : String
 
-        fun moveToPost()
+        fun moveToPost(postId : Int)
     }
 
     interface Presenter{

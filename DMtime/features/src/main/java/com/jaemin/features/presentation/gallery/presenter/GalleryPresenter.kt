@@ -25,6 +25,7 @@ class GalleryPresenter(
     }
 
     override fun onClickPost(postId: Int) {
+        galleryView.moveToPost(postId)
 
     }
 
