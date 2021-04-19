@@ -27,7 +27,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
     }
 
     override fun onResume() {
-        Log.d("ppap","ppap")
         presenter.onCreate()
         super.onResume()
     }

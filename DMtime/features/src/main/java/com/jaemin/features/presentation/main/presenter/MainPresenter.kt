@@ -13,18 +13,15 @@ class MainPresenter(
 ) : MainContract.Presenter {
 
     override fun onCreate() {
-        Log.d("ppapsuc","ppap")
         getDefaultGalleriesUseCase.execute(
             Unit,
             object : DisposableSingleObserver<List<DefaultGallery>>() {
                 override fun onSuccess(galleries: List<DefaultGallery>) {
-                    Log.d("ppapsuc",galleries.toString())
                     mainView.setDefaultGalleries(galleries)
                 }
 
                 override fun onError(e: Throwable) {
                     e.printStackTrace()
-                    Log.d("ppapfail","cc")
                     mainView.setDefaultGalleriesFailed()
                 }
             })
