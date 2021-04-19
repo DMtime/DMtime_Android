@@ -7,8 +7,8 @@ import com.jaemin.features.domain.entity.Posts
 import com.jaemin.features.domain.entity.Uploader
 import com.jaemin.features.domain.repository.GalleryRepository
 import com.jaemin.features.domain.usecase.GetPostsUseCase
-import com.jaemin.features.presentation.contract.GalleryContract
-import com.jaemin.features.presentation.presenter.GalleryPresenter
+import com.jaemin.features.presentation.gallery.contract.GalleryContract
+import com.jaemin.features.presentation.gallery.presenter.GalleryPresenter
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test

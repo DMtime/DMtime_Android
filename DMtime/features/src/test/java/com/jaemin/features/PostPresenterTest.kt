@@ -6,8 +6,8 @@ import com.jaemin.features.domain.entity.Post
 import com.jaemin.features.domain.entity.Uploader
 import com.jaemin.features.domain.repository.PostRepository
 import com.jaemin.features.domain.usecase.GetPostUseCase
-import com.jaemin.features.presentation.contract.PostContract
-import com.jaemin.features.presentation.presenter.PostPresenter
+import com.jaemin.features.presentation.post.contract.PostContract
+import com.jaemin.features.presentation.post.presenter.PostPresenter
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test

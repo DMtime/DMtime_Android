@@ -4,8 +4,8 @@ import com.jaemin.features.base.BaseTest
 import com.jaemin.features.domain.entity.Comments
 import com.jaemin.features.domain.repository.CommentsRepository
 import com.jaemin.features.domain.usecase.GetCommentsUseCase
-import com.jaemin.features.presentation.contract.CommentsContract
-import com.jaemin.features.presentation.presenter.CommentsPresenter
+import com.jaemin.features.presentation.post.contract.CommentsContract
+import com.jaemin.features.presentation.post.presenter.CommentsPresenter
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test
