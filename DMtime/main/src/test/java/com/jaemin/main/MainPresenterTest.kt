@@ -1,11 +1,11 @@
 package com.jaemin.main
 
 import com.jaemin.main.base.BaseTest
-import com.jaemin.main.domain.entity.DefaultGallery
-import com.jaemin.main.domain.repository.MainRepository
-import com.jaemin.main.domain.usecase.GetDefaultGalleriesUseCase
-import com.jaemin.main.presentation.MainContract
-import com.jaemin.main.presentation.MainPresenter
+import com.jaemin.features.domain.entity.DefaultGallery
+import com.jaemin.features.data.repository.MainRepository
+import com.jaemin.features.domain.usecase.GetDefaultGalleriesUseCase
+import com.jaemin.features.presentation.view.main.MainContract
+import com.jaemin.features.presentation.view.main.MainPresenter
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test

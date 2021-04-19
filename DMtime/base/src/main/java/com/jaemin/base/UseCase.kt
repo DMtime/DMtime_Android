@@ -1,5 +1,6 @@
 package com.jaemin.base
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
@@ -17,6 +18,9 @@ abstract class UseCase<P, R> {
 
     }
 
+    fun clear() {
+        compositeDisposable.clear()
+    }
     fun dispose() {
         compositeDisposable.dispose()
     }

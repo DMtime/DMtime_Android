@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.jaemin.dmtime">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
             android:name=".di.MainApplication"
@@ -18,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.jaemin.features.presentation.main.view.MainActivity"
+            android:windowSoftInputMode="adjustPan"
+        />
     </application>
 
 </manifest>

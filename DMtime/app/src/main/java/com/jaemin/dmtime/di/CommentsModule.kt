@@ -1,11 +1,11 @@
 package com.jaemin.dmtime.di
 
-import com.jaemin.gallery.data.remote.CommentsApi
-import com.jaemin.gallery.data.repository.CommentsRepositoryImpl
-import com.jaemin.gallery.domain.repository.CommentsRepository
-import com.jaemin.gallery.domain.usecase.GetCommentsUseCase
-import com.jaemin.gallery.presentation.contract.CommentsContract
-import com.jaemin.gallery.presentation.presenter.CommentsPresenter
+import com.jaemin.features.data.remote.CommentsApi
+import com.jaemin.features.data.repository.CommentsRepositoryImpl
+import com.jaemin.features.domain.repository.CommentsRepository
+import com.jaemin.features.domain.usecase.GetCommentsUseCase
+import com.jaemin.features.presentation.post.contract.CommentsContract
+import com.jaemin.features.presentation.post.presenter.CommentsPresenter
 import org.koin.dsl.module
 import retrofit2.Retrofit
 

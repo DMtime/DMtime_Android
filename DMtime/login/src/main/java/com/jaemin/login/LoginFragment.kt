@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.jaemin.base.BaseFragment
 import com.jaemin.login.databinding.FragmentLoginBinding
-import com.jaemin.main.presentation.MainActivity
+import com.jaemin.features.presentation.main.view.MainActivity
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {

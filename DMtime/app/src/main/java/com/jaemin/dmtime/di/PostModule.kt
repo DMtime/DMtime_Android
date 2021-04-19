@@ -1,12 +1,15 @@
 package com.jaemin.dmtime.di
 
-import com.jaemin.gallery.data.remote.PostApi
-import com.jaemin.gallery.data.remote.PostsApi
-import com.jaemin.gallery.data.repository.PostRepositoryImpl
-import com.jaemin.gallery.domain.repository.PostRepository
-import com.jaemin.gallery.domain.usecase.GetPostUseCase
-import com.jaemin.gallery.presentation.contract.PostContract
-import com.jaemin.gallery.presentation.presenter.PostPresenter
+import com.jaemin.features.data.remote.PostApi
+import com.jaemin.features.data.remote.PostsApi
+import com.jaemin.features.data.repository.PostRepositoryImpl
+import com.jaemin.features.domain.repository.PostRepository
+import com.jaemin.features.domain.usecase.GetPostUseCase
+import com.jaemin.features.domain.usecase.WritePostsUseCase
+import com.jaemin.features.presentation.post.contract.PostContract
+import com.jaemin.features.presentation.post.contract.WritePostContract
+import com.jaemin.features.presentation.post.presenter.PostPresenter
+import com.jaemin.features.presentation.post.presenter.WritePostPresenter
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
@@ -22,5 +25,9 @@ val postModule = module {
 
     factory<PostContract.Presenter> { (view: PostContract.View) -> PostPresenter(get(), view) }
     factory<PostRepository> { PostRepositoryImpl(get()) }
+
+    factory<WritePostContract.Presenter> { (view: WritePostContract.View) -> WritePostPresenter(view,get()) }
+
     factory { GetPostUseCase(get()) }
+    factory { WritePostsUseCase(get()) }
 }
