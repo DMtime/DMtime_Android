@@ -1,11 +1,11 @@
 package com.jaemin.dmtime.di
 
-import com.jaemin.main.data.remote.MainApi
-import com.jaemin.main.data.repository.MainRepositoryImpl
-import com.jaemin.main.domain.repository.MainRepository
-import com.jaemin.main.domain.usecase.GetDefaultGalleriesUseCase
-import com.jaemin.main.presentation.MainContract
-import com.jaemin.main.presentation.MainPresenter
+import com.jaemin.features.data.remote.MainApi
+import com.jaemin.features.data.repository.MainRepositoryImpl
+import com.jaemin.features.domain.repository.MainRepository
+import com.jaemin.features.domain.usecase.GetDefaultGalleriesUseCase
+import com.jaemin.features.presentation.main.contract.MainContract
+import com.jaemin.features.presentation.main.presenter.MainPresenter
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
