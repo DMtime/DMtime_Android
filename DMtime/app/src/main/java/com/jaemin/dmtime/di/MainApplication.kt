@@ -6,12 +6,14 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import retrofit2.HttpException
+import timber.log.Timber
 import java.io.IOException
 import java.net.SocketException
 
 class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        Timber.plant(Timber.DebugTree())
         RxJavaPlugins.setErrorHandler {
             if (it is UndeliverableException) {
 
