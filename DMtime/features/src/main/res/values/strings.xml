@@ -10,4 +10,5 @@
     <string name="post_comment_confirm_tv">등록</string>
     <string name="attach_picture_btn">사진 첨부</string>
     <string name="write_post_tv">게시</string>
+    <string name="write_anonymous">익명으로 작성</string>
 </resources>
