@@ -3,8 +3,10 @@ package com.jaemin.features.presentation.main.view
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MotionEventCompat
 import com.jaemin.base.BaseFragment
 import com.jaemin.features.R
 import com.jaemin.features.databinding.FragmentMainBinding
@@ -16,6 +18,7 @@ import com.jaemin.features.presentation.post.view.PostFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import splitties.toast.toast
+import timber.log.Timber
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
@@ -23,7 +26,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
     private val presenter: MainContract.Presenter by inject { parametersOf(this) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.defaultGalleriesRv.addItemDecoration(MainRecyclerViewDecoration(30))
         binding.defaultGalleriesRv.adapter = DefaultGalleriesAdapter(presenter)
+
     }
 
     override fun onResume() {
@@ -32,12 +37,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
     }
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMainBinding {
-        return FragmentMainBinding.inflate(inflater, container,false)
+        return FragmentMainBinding.inflate(inflater, container, false)
     }
 
     override fun setDefaultGalleries(defaultGalleries: List<DefaultGallery>) {
         if (binding.defaultGalleriesRv.adapter != null && !defaultGalleries.isNullOrEmpty()) {
-            (binding.defaultGalleriesRv.adapter as DefaultGalleriesAdapter).updateItems(
+                Timber.d(defaultGalleries.toString())
+                (binding.defaultGalleriesRv.adapter as DefaultGalleriesAdapter).updateItems(
                 defaultGalleries
             )
         }
@@ -49,6 +55,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
 
     override fun moveToPost(postId: Int) {
         requireActivity().supportFragmentManager.beginTransaction()
+            .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
             .replace(R.id.main_drawer_layout, PostFragment().apply {
                 arguments = Bundle().apply {
                     putInt("postId", postId)
@@ -60,6 +67,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
 
     override fun moveToGallery(galleryId: String) {
         requireActivity().supportFragmentManager.beginTransaction()
+            .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
             .replace(R.id.main_fragment, GalleryFragment().apply {
                 arguments = Bundle().apply {
                     putString("galleryId", galleryId)
