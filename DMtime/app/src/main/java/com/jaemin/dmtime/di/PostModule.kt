@@ -5,6 +5,8 @@ import com.jaemin.features.data.remote.PostsApi
 import com.jaemin.features.data.repository.PostRepositoryImpl
 import com.jaemin.features.domain.repository.PostRepository
 import com.jaemin.features.domain.usecase.GetPostUseCase
+import com.jaemin.features.domain.usecase.PostDislikeUseCase
+import com.jaemin.features.domain.usecase.PostLikeUseCase
 import com.jaemin.features.domain.usecase.WritePostsUseCase
 import com.jaemin.features.presentation.post.contract.PostContract
 import com.jaemin.features.presentation.post.contract.WritePostContract
@@ -23,11 +25,13 @@ val postModule = module {
     factory { providePostApi(get()) }
     factory { providePostsApi(get()) }
 
-    factory<PostContract.Presenter> { (view: PostContract.View) -> PostPresenter(get(), view) }
+    factory<PostContract.Presenter> { (view: PostContract.View) -> PostPresenter(get(), get(),get(),view) }
     factory<PostRepository> { PostRepositoryImpl(get()) }
 
     factory<WritePostContract.Presenter> { (view: WritePostContract.View) -> WritePostPresenter(view,get()) }
 
     factory { GetPostUseCase(get()) }
     factory { WritePostsUseCase(get()) }
+    factory { PostLikeUseCase(get()) }
+    factory { PostDislikeUseCase(get()) }
 }
