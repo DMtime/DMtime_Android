@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import timber.log.Timber
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {
     private var _binding : T? = null
@@ -17,8 +18,8 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     }
     abstract fun setBinding(inflater : LayoutInflater,container : ViewGroup?) : T
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
        _binding = null
     }
 }
