@@ -14,7 +14,7 @@ interface WritePostContract {
 
         fun isAnonymous() : Boolean
 
-        fun getTitle() : String
+        fun getPostTitle() : String
 
         fun getContents() : String
 
