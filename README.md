@@ -11,5 +11,5 @@
 * 라이브러리 : RxJava, Koin, Retrofit2
 
 ## 테스트 작성 규칙
-테스트 코드는 [Given~When~Then 규칙](https://martinfowler.com/bliki/GivenWhenThen.html)으로 작성되었습니다.
+테스트 코드는 [Given ~ When ~ Then 규칙](https://martinfowler.com/bliki/GivenWhenThen.html)으로 작성되었습니다.
 ![image](https://user-images.githubusercontent.com/48317457/116565423-d2871000-a940-11eb-9057-40208708dbd9.png)
