@@ -22,11 +22,6 @@ class PostRepositoryImpl(private val postApi: PostApi) : PostRepository {
 
     override fun patchPost(postId: Int, patchedPost: PatchedPost): Completable =
         postApi.patchPost(postId, patchedPost.toData())
-//    override fun writePost(file: File): Completable {
-//        val fileToRequestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-//        Log.d("ppap",file.name)
-//        return postApi.postImage(MultipartBody.Part.createFormData("image",file.name,fileToRequestBody)).doOnError { it.printStackTrace() }
-//    }
 
     override fun writePost(writtenPost: WrittenPost): Single<Boolean> {
 
@@ -35,7 +30,7 @@ class PostRepositoryImpl(private val postApi: PostApi) : PostRepository {
             MultipartBody.Part.createFormData("image", it.name, fileToRequestBody)
         }).flatMap { postApi.postImage(it).toObservable() }.toList()
             .flatMap {
-                postApi.writePost("free",
+                postApi.writePost("defualt",
                     WrittenPostRequest(
                         writtenPost.isAnonymous,
                         it.map { image -> image.image },
@@ -46,13 +41,14 @@ class PostRepositoryImpl(private val postApi: PostApi) : PostRepository {
                     .toSingleDefault(true)
                     .onErrorReturnItem(false)
             }
-
-
-//        Observable.fromIterable(writtenPost.images.map {
-//            val fileToRequestBody = it.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-//            MultipartBody.Part.createFormData("image", it.name, fileToRequestBody)
-//        })
-//            .flatMap { postApi.postImage(it) }
     }
+
+    override fun postLike(postId: Int): Completable = postApi.postLike(postId)
+
+    override fun postDislike(postId: Int): Completable = postApi.postDislike(postId)
+
+    override fun postLikeCancel(postId: Int): Completable = postApi.postLikeCancel(postId)
+
+    override fun postDislikeCancel(postId: Int): Completable = postApi.postDislikeCancel(postId)
 
 }

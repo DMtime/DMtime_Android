@@ -7,5 +7,5 @@ import io.reactivex.rxjava3.core.Single
 
 class GetPostsUseCase(private val galleryRepository: GalleryRepository) : UseCase<Pair<Int, String>, Posts>(){
     override fun build(data: Pair<Int, String>): Single<Posts> =
-        galleryRepository.getPosts(4,data.first,data.second)
+        galleryRepository.getPosts(15,data.first,data.second)
 }

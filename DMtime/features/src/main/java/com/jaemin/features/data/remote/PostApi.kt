@@ -27,4 +27,16 @@ interface PostApi {
     @Multipart
     @POST("images")
     fun postImage(@Part image: MultipartBody.Part): Single<Image>
+
+    @POST("board/posts/{post-id}/like")
+    fun postLike(@Path("post-id") postId: Int): Completable
+
+    @POST("board/posts/{post-id}/dislike")
+    fun postDislike(@Path("post-id") postId: Int): Completable
+
+    @DELETE("board/posts/{post-id}/like")
+    fun postLikeCancel(@Path("post-id") postId: Int): Completable
+
+    @DELETE("board/posts/{post-id}/dislike")
+    fun postDislikeCancel(@Path("post-id") postId: Int): Completable
 }

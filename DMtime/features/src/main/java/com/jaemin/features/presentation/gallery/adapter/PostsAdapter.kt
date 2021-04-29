@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jaemin.features.databinding.ItemPostsBinding
 import com.jaemin.features.domain.entity.PostPreview
 import com.jaemin.features.presentation.gallery.contract.GalleryContract
+import timber.log.Timber
 
 class PostsAdapter(private val galleryPresenter: GalleryContract.Presenter, private val posts : MutableList<PostPreview> = mutableListOf()) : RecyclerView.Adapter<PostsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsViewHolder {
@@ -15,6 +16,7 @@ class PostsAdapter(private val galleryPresenter: GalleryContract.Presenter, priv
     }
 
     override fun onBindViewHolder(holder: PostsViewHolder, position: Int) {
+        Timber.d(position.toString())
         holder.bind(posts[position])
     }
     fun updateItems(posts : List<PostPreview>){
@@ -22,6 +24,11 @@ class PostsAdapter(private val galleryPresenter: GalleryContract.Presenter, priv
         this.posts.addAll(posts)
         notifyDataSetChanged()
     }
+    fun loadItems(posts : List<PostPreview>){
+        this.posts.addAll(posts)
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount(): Int = posts.size
 }

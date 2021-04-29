@@ -1,14 +1,16 @@
 package com.jaemin.base
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import timber.log.Timber
 
-abstract class BaseFragment<T : ViewBinding> : Fragment() {
+abstract class BaseDialogFragment<T : ViewBinding> : DialogFragment() {
     private var _binding : T? = null
     protected val binding get() = _binding!!
 
@@ -17,9 +19,13 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         return binding.root
     }
     abstract fun setBinding(inflater : LayoutInflater,container : ViewGroup?) : T
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-    override fun onDestroy() {
-        super.onDestroy()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
        _binding = null
     }
 }

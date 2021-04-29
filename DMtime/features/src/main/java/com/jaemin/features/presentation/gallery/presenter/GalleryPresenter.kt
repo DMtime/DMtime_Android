@@ -24,6 +24,16 @@ class GalleryPresenter(
         })
     }
 
+    override fun onLoadMore() {
+        getPostsUseCase.execute(Pair(page, galleryId), object : DisposableSingleObserver<Posts>(){
+            override fun onSuccess(posts: Posts) {
+                galleryView.setPosts(posts.posts)
+            }
+            override fun onError(e: Throwable) {
+                galleryView.showGetPostsFailedMessage()
+            }
+        })    }
+
     override fun onClickPost(postId: Int) {
         galleryView.moveToPost(postId)
 

@@ -22,20 +22,27 @@ class MainRepositoryImpl(private val mainApi: MainApi) : MainRepository {
         val defaultGallery: Single<List<DefaultGallery>> = Single.zip(
             galleriesSingle,
             galleriesSingle.flatMap {
-                (Observable.fromIterable(it).flatMap { gallery ->
-                    mainApi.getGalleryPosts(4, 1, gallery.galleryId).toObservable()
+                (Observable.fromIterable(it).flatMap
+                { gallery ->
+                    mainApi.getGalleryPosts(4, 1, gallery.galleryId).map { posts ->
+                        Pair(gallery.galleryId, posts)
+                    }.toObservable()
                 }).toList()
 
             },
             { gallery, posts ->
                 val defaultGalleries = mutableListOf<DefaultGallery>()
                 for (i in gallery.indices) {
-                    defaultGalleries.add(
-                        DefaultGallery(
-                            gallery[i].galleryId,
-                            gallery[i].name,
-                            posts[i].posts.map { it.toEntity() })
-                    )
+                    for (j in posts.indices) {
+                        if (posts[j].first == gallery[i].galleryId) {
+                            defaultGalleries.add(
+                                DefaultGallery(
+                                    gallery[i].galleryId,
+                                    gallery[i].name,
+                                    posts[j].second.posts.map { it.toEntity() })
+                            )
+                        }
+                    }
                 }
                 defaultGalleries
             })

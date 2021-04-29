@@ -16,6 +16,8 @@ interface GalleryContract {
     interface Presenter{
         fun onCreate()
 
+        fun onLoadMore()
+
         fun onClickPost(postId: Int)
 
 
