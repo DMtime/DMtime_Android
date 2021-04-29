@@ -32,7 +32,7 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         super.onViewCreated(view, savedInstanceState)
         postsAdapter = PostsAdapter(galleryPresenter)
         binding.postsRv.adapter = postsAdapter
-        galleryPresenter.onCreate(Pair(1,""))
+        galleryPresenter.onCreate()
 
 //        binding.postsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 //            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

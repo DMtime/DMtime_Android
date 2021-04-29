@@ -36,7 +36,6 @@ class PostPresenter(
             }
 
             override fun onError(e: Throwable) {
-                e.printStackTrace()
                 postView.showErrorScreen()
             }
         })
