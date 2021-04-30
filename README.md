@@ -1,5 +1,6 @@
 # DMtime
 > 대덕소프트웨어마이스터고등학교 학생들을 위한 익명 커뮤니티 앱입니다.  
+[![Build Status](https://app.bitrise.io/app/2c694dc9c1a6641f/status.svg?token=PqgUitZ9yQE2quZ1vwDSCQ&branch=develop)](https://app.bitrise.io/app/2c694dc9c1a6641f)
 
 <br/>
 
