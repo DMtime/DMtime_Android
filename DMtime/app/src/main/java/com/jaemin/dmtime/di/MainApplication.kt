@@ -24,28 +24,27 @@ class MainApplication : Application() {
                 return@setErrorHandler
             if (it is InterruptedException)
                 return@setErrorHandler
-            if (it is NullPointerException || it is  IllegalArgumentException){
+            if (it is NullPointerException || it is IllegalArgumentException) {
                 Thread.currentThread().uncaughtExceptionHandler
-                    .uncaughtException(Thread.currentThread(), it)
+                        .uncaughtException(Thread.currentThread(), it)
                 return@setErrorHandler
 
             }
-            if (it is IllegalStateException){
+            if (it is IllegalStateException) {
                 Thread.currentThread().uncaughtExceptionHandler
-                    .uncaughtException(Thread.currentThread(), it)
+                        .uncaughtException(Thread.currentThread(), it)
                 return@setErrorHandler
             }
         }
         startKoin {
             androidContext(this@MainApplication)
-            modules(
-                listOf(
+            modules(listOf(
                     networkModule,
                     mainModule,
                     galleryModule,
                     postModule,
-                    commentsModule
-                )
+                    commentsModule,
+                    authModule)
             )
         }
     }
