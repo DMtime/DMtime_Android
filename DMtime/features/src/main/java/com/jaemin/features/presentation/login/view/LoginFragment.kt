@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jaemin.base.BaseFragment
+import com.jaemin.features.R
 import com.jaemin.features.databinding.FragmentLoginBinding
-import com.jaemin.features.domain.requestmodel.LoginInfo
 import com.jaemin.features.presentation.login.contract.LoginContract
 import com.jaemin.features.presentation.main.view.MainActivity
+import com.jaemin.features.presentation.signup.view.SignUpFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -20,6 +21,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginContract.View{
         super.onViewCreated(view, savedInstanceState)
         binding.loginBtn.setOnClickListener {
             presenter.onClickLoginButton()
+        }
+        binding.signUpTv.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_layout, SignUpFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
     }
