@@ -12,5 +12,8 @@
     <string name="write_post_tv">게시</string>
     <string name="write_anonymous">익명으로 작성</string>
     <string name="login_title_tv">로그인</string>
-    <string name="sign_up_tv">계정이 없으신가요?<font color= "#A6DE57"> <u>회원가입</u></font></string>
+    <string name="sign_up_tv">계정이 없으신가요?<font color="#A6DE57"> <u>회원가입</u></font></string>
+    <string name="sign_up_title_tv">회원가입</string>
+    <string name="next_btn">다음</string>
+    <string name="sign_up_btn">회원가입하기</string>
 </resources>
