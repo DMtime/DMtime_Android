@@ -5,8 +5,8 @@ import timber.log.Timber
 class EmailValidateUseCase {
     companion object{
         fun validateEmail(email : String) : Boolean{
-            if(email.matches(Regex("[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@dsm.hs.kr"))) {
-                Timber.d("ppap")
+            if(email.matches(Regex("^.*@dsm.hs.kr$"))) {
+                Timber.d(email)
                 return true
             }
             return false
