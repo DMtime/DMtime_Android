@@ -23,19 +23,19 @@ class PostRepositoryImpl(private val postApi: PostApi) : PostRepository {
     override fun patchPost(postId: Int, patchedPost: PatchedPost): Completable =
         postApi.patchPost(postId, patchedPost.toData())
 
-    override fun writePost(writtenPost: WrittenPost): Single<Boolean> {
+    override fun writePost(writtenPost: Pair<String, WrittenPost>): Single<Boolean> {
 
-        return Observable.fromIterable(writtenPost.images.map {
+        return Observable.fromIterable(writtenPost.second.images.map {
             val fileToRequestBody = it.asRequestBody("multipart/form-data".toMediaTypeOrNull())
             MultipartBody.Part.createFormData("image", it.name, fileToRequestBody)
         }).flatMap { postApi.postImage(it).toObservable() }.toList()
             .flatMap {
-                postApi.writePost("defualt",
+                postApi.writePost(writtenPost.first,
                     WrittenPostRequest(
-                        writtenPost.isAnonymous,
+                        writtenPost.second.isAnonymous,
                         it.map { image -> image.image },
-                        writtenPost.content,
-                        writtenPost.title
+                        writtenPost.second.content,
+                        writtenPost.second.title
                     )
                 )
                     .toSingleDefault(true)

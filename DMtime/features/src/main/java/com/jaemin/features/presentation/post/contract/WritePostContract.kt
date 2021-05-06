@@ -25,7 +25,7 @@ interface WritePostContract {
 
         fun onClickAttachImageButton()
 
-        fun onClickWritePostButton(writtenPost: WrittenPost)
+        fun onClickWritePostButton(writtenPost: Pair<String, WrittenPost>)
 
     }
 }

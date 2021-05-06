@@ -34,21 +34,18 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         binding.postsRv.adapter = postsAdapter
         galleryPresenter.onCreate()
 
-//        binding.postsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                if ((binding.postsRv.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition() + 1
-//                    == (binding.postsRv.layoutManager as LinearLayoutManager).itemCount) {
-//                    galleryPresenter.onLoadMore()
-//                }
-//
-//            }
-//        })
-//        binding.root.children.iterator().forEach {
-//            it.apply {
-//                isClickable= false
-//            }
-//        }
+        binding.postsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (recyclerView.adapter!!.itemCount != 0) {
+                    if ((recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition() == recyclerView.adapter!!.itemCount - 1) {
+                        galleryPresenter.onLoadMore()
+                    }
+                }
+
+            }
+        })
         binding.writePostBtn.setOnClickListener {
             startActivity(Intent(requireActivity(), WritePostActivity::class.java).apply {
                 putExtra("galleryId", getGalleryId())
@@ -57,7 +54,6 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         }
         binding.galleryNameTv.text = getGalleryId()
     }
-
 
     override fun setBinding(
         inflater: LayoutInflater,
@@ -89,34 +85,14 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
 
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        Timber.d("dtonStart")
-    }
-    override fun onResume() {
-        super.onResume()
-        Timber.d("dtonResume")
-    }
-    override fun onPause() {
-        super.onPause()
-        Timber.d("dtonPause")
-    }
-    override fun onStop() {
-        super.onStop()
-        Timber.d("dtonStop ")
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.d("dtonDestroyView")
-    }
-    override fun onDetach() {
-        super.onDetach()
-        Timber.d("dtonDetach")
+    override fun showProgressBar() {
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d("dtonDestroy")
+    override fun hideProgressBar() {
     }
+
+    override fun hideInitProgressBar() {
+        binding.galleryProgressBar.visibility = View.GONE
+    }
+
 }

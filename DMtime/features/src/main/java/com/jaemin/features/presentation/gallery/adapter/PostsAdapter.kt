@@ -20,7 +20,6 @@ class PostsAdapter(private val galleryPresenter: GalleryContract.Presenter, priv
         holder.bind(posts[position])
     }
     fun updateItems(posts : List<PostPreview>){
-        this.posts.clear()
         this.posts.addAll(posts)
         notifyDataSetChanged()
     }

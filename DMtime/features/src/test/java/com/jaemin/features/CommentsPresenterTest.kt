@@ -39,7 +39,7 @@ class CommentsPresenterTest : BaseTest(){
     }
 
     @Test
-    fun getCommentsSuccess() {
+    fun `(Given) 댓글 리스트 조회 시 (When) 상세 게시글 화면 진입 시 (Then) 댓글 표시`() {
         val comments = Comments(listOf(), 1)
         `when`(commentsRepository.getComments(Mockito.anyInt())).thenReturn(Single.just(comments))
 
@@ -48,7 +48,7 @@ class CommentsPresenterTest : BaseTest(){
     }
 
     @Test
-    fun writeCommentsSuccess() {
+    fun `(Given) 댓글 (When) 댓글 작성 시 (Then) 작성 성공 메시지 표시 후, 댓글 창 초기화 후, 댓글 표시`() {
         val comment = CommentInProgress(false, null, "test")
         val postId = 1
 
@@ -62,7 +62,7 @@ class CommentsPresenterTest : BaseTest(){
         verify(commentsView).moveToComment()
     }
     @Test
-    fun writeReplyCommentsSuccess() {
+    fun `(Given) 대댓글 (When) 대댓글 작성 시 (Then) 작성 성공 메시지 표시 후, 대댓글 창 초기화 후, 대댓글 표시`() {
         val comment = CommentInProgress(false, 1, "test")
         val postId = 1
 
@@ -75,7 +75,7 @@ class CommentsPresenterTest : BaseTest(){
         verify(commentsView).clearCommentContent()
     }
     @Test
-    fun writeCommentsFailed() {
+    fun `(Given) 댓글 (When) 댓글 작성 실패 시 (Then) 댓글 작성 실패 메시지 표시`() {
         val comment = CommentInProgress(false, null, "test")
         val postId = 1
 

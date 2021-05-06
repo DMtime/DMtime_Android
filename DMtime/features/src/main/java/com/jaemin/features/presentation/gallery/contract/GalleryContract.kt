@@ -11,6 +11,13 @@ interface GalleryContract {
         fun getGalleryId() : String
 
         fun moveToPost(postId : Int)
+
+        fun showProgressBar()
+
+        fun hideProgressBar()
+
+        fun hideInitProgressBar()
+
     }
 
     interface Presenter{

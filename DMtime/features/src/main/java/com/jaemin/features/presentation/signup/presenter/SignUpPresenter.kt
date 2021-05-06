@@ -55,6 +55,9 @@ class SignUpPresenter(private val signUpView: SignUpContract.View,
                     signUpView.showAvailableEmailMessage()
                     signUpUseCase.isEmailValidated = true
                 }
+                else{
+                    signUpView.showDuplicateEmailErrorMessage()
+                }
             }
 
             override fun onError(e: Throwable) {

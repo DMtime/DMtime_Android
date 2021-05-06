@@ -10,7 +10,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 
-class FileManager {
+class FileCreator {
     companion object{
 
         @Throws(IOException::class)
@@ -25,7 +25,6 @@ class FileManager {
                     )
                 }
             } catch (ex: Exception) {
-                Log.e("Save File", ex.message!!)
                 ex.printStackTrace()
             }
             return destinationFilename
@@ -42,7 +41,6 @@ class FileManager {
                     os.flush()
                 }
             } catch (ex: Exception) {
-                Log.e("Save File", ex.message!!)
                 ex.printStackTrace()
             }
         }
