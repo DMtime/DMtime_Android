@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.jaemin.base.BaseFragment
 import com.jaemin.features.R
@@ -21,7 +20,6 @@ import com.jaemin.features.presentation.post.adapter.PostImageAdapter
 import es.dmoral.toasty.Toasty
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 
 
 class PostFragment : BaseFragment<FragmentPostBinding>(), PostContract.View, CommentsContract.View {
@@ -143,35 +141,4 @@ class PostFragment : BaseFragment<FragmentPostBinding>(), PostContract.View, Com
     override fun clearCommentContent() {
         binding.postCommentEt.text.clear()
     }
-
-    override fun onStart() {
-        super.onStart()
-        Timber.d("dtonStart: ${getPostId()}")
-    }
-    override fun onResume() {
-        super.onResume()
-        Timber.d("dtonResume: ${getPostId()}")
-    }
-    override fun onPause() {
-        super.onPause()
-        Timber.d("dtonPause : ${getPostId()}")
-    }
-    override fun onStop() {
-        super.onStop()
-        Timber.d("dtonStop : ${getPostId()}")
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.d("dtonDestroyView : ${getPostId()}")
-    }
-    override fun onDetach() {
-        super.onDetach()
-        Timber.d("dtonDetach : ${getPostId()}")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d("dtonDestroy : ${getPostId()}")
-    }
-
 }
