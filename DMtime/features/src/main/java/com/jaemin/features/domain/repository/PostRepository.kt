@@ -5,14 +5,13 @@ import com.jaemin.features.domain.entity.Post
 import com.jaemin.features.domain.entity.WrittenPost
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import java.io.File
 
 interface PostRepository {
     fun getPost(postId: Int): Single<Post>
 
     fun patchPost(postId: Int, patchedPost: PatchedPost): Completable
 
-    fun writePost(writtenPost: WrittenPost): Single<Boolean>
+    fun writePost(writtenPost: Pair<String, WrittenPost>): Single<Boolean>
 
     fun postLike(postId: Int): Completable
 
