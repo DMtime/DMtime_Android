@@ -35,10 +35,10 @@ class WritePostPresenterTest : BaseTest(){
     @Test
     fun writePostSuccess(){
         val writtenPost = WrittenPost(false, listOf(),"d","d")
-        `when`(postRepository.writePost(writtenPost)).thenReturn(Single.just(true))
+        `when`(postRepository.writePost(Pair("test",writtenPost))).thenReturn(Single.just(true))
 
 
-        writePostPresenter.onClickWritePostButton(writtenPost)
+        writePostPresenter.onClickWritePostButton(Pair("test",writtenPost))
 
 
         verify(writePostView).showSuccessMessage()
