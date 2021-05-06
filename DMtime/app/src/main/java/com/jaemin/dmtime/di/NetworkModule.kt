@@ -2,7 +2,7 @@ package com.jaemin.dmtime.di
 
 import com.jaemin.dmtime.AuthorizationInterceptor
 import com.jaemin.dmtime.BuildConfig
-import com.jaemin.dmtime.SharedPreferencesManager
+import com.jaemin.features.data.SharedPreferencesManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext

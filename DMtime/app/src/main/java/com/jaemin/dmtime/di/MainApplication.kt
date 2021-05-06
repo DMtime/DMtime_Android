@@ -44,7 +44,9 @@ class MainApplication : Application() {
                     galleryModule,
                     postModule,
                     commentsModule,
-                    authModule)
+                    authModule,
+                    userModule
+                )
             )
         }
     }
