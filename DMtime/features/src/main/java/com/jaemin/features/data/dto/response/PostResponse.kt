@@ -8,6 +8,8 @@ data class PostResponse(
     val content: String,
     @SerializedName("is_anonymous")
     val isAnonymous: Boolean,
+    @SerializedName("is_mine")
+    val isMine: Boolean,
     val id: Int,
     val images: List<String>,
     @SerializedName("number_of_likes")
@@ -20,12 +22,16 @@ data class PostResponse(
     val postedGallery: GalleryResponse,
     val title: String,
     val uploader: Uploader,
-    val views: Int
+    val views: Int,
+    @SerializedName("my_reaction")
+    val myReaction: String
+
 )
 
 fun PostResponse.toEntity() = Post(
     this.content,
     this.isAnonymous,
+    this.isMine,
     this.id,
     this.images,
     this.numberOfLikes,
@@ -34,5 +40,6 @@ fun PostResponse.toEntity() = Post(
     this.postedGallery.toEntity(),
     this.title,
     this.uploader,
-    this.views
+    this.views,
+    this.myReaction
 )

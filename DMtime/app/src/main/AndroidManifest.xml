@@ -12,7 +12,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.DMtime">
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.jaemin.features.presentation.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

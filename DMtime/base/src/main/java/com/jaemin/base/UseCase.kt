@@ -1,15 +1,14 @@
 package com.jaemin.base
 
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 
-abstract class UseCase<P, R> {
+abstract class UseCase<Parameter, ReturnValue> {
     private val compositeDisposable = CompositeDisposable()
-    abstract fun build(data: P): Single<R>
+    abstract fun build(data: Parameter): Single<ReturnValue>
 
-    fun execute(data: P, disposableSingleObserver: DisposableSingleObserver<R>) {
+    fun execute(data: Parameter, disposableSingleObserver: DisposableSingleObserver<ReturnValue>) {
         val observer = build(data)
             .subscribeOn(SchedulerProvider.io())
             .observeOn(SchedulerProvider.ui())
