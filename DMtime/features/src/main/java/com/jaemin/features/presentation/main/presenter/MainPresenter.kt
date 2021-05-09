@@ -1,16 +1,11 @@
 package com.jaemin.features.presentation.main.presenter
 
-import com.jaemin.features.domain.entity.DefaultGallery
 import com.jaemin.features.domain.entity.Gallery
 import com.jaemin.features.domain.entity.User
-import com.jaemin.features.domain.repository.MainRepository
 import com.jaemin.features.domain.usecase.GetAllGalleriesUseCase
-import com.jaemin.features.domain.usecase.GetDefaultGalleriesUseCase
 import com.jaemin.features.domain.usecase.GetMyInfoUseCase
 import com.jaemin.features.presentation.main.contract.MainContract
-import com.jaemin.features.presentation.main.contract.MainGalleryContract
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
-import timber.log.Timber
 
 
 class MainPresenter(

@@ -1,32 +1,12 @@
 package com.jaemin.features.presentation.gallery.contract
 
 import com.jaemin.features.domain.entity.PostPreview
+import com.jaemin.features.presentation.mypage.contract.PostsContract
 
 interface GalleryContract {
-    interface View{
-        fun setPosts(posts: List<PostPreview>)
-
-        fun showGetPostsFailedMessage()
-
+    interface View: PostsContract.View{
         fun getGalleryId() : String
-
-        fun moveToPost(postId : Int)
-
-        fun showProgressBar()
-
-        fun hideProgressBar()
-
-        fun hideInitProgressBar()
-
     }
 
-    interface Presenter{
-        fun onCreate()
-
-        fun onLoadMore()
-
-        fun onClickPost(postId: Int)
-
-
-    }
+    interface Presenter : PostsContract.Presenter
 }

@@ -16,14 +16,14 @@ interface AuthApi {
     fun login(@Body loginRequest: LoginRequest): Single<TokenResponse>
 
     @GET("users/email-duplication")
-    fun isNotDuplicateEmail(@Query("email") email : String) : Single<DuplicateResponse>
+    fun isNotDuplicateEmail(@Query("email") email: String): Single<DuplicateResponse>
 
     @GET("users/username-duplication")
-    fun isNotDuplicateUsername(@Query("username") username : String) : Single<DuplicateResponse>
+    fun isNotDuplicateUsername(@Query("username") username: String): Single<DuplicateResponse>
 
     @POST("email-verification-code")
-    fun verifyEmail(@Query("verification-code") verificationCode : String) : Completable
+    fun verifyEmail(@Query("verification-code") verificationCode: String): Completable
 
     @POST("users")
-    fun signUp(@Body signUpRequest: SignUpRequest) : Completable
+    fun signUp(@Body signUpRequest: SignUpRequest): Completable
 }
