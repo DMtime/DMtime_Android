@@ -9,10 +9,10 @@ import retrofit2.http.Query
 
 interface MainApi {
     @GET("board/galleries")
-    fun getDefaultGalleries(@Query("gallery-type") galleryType: Int) : Single<List<GalleryResponse>>
+    fun getDefaultGalleries(@Query("gallery-type") galleryType: Int): Single<List<GalleryResponse>>
 
     @GET("board/galleries")
-    fun getAllGalleries() : Single<List<GalleryResponse>>
+    fun getAllGalleries(): Single<List<GalleryResponse>>
 
     @GET("board/posts")
     fun getGalleryPosts(

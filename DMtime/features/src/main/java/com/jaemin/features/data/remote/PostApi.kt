@@ -22,7 +22,10 @@ interface PostApi {
     ): Completable
 
     @POST("board/posts")
-    fun writePost(@Query("gallery-id") galleryId : String,@Body writtenPostRequest: WrittenPostRequest): Completable
+    fun writePost(
+        @Query("gallery-id") galleryId: String,
+        @Body writtenPostRequest: WrittenPostRequest
+    ): Completable
 
     @Multipart
     @POST("images")
