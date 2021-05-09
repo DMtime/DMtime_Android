@@ -17,6 +17,7 @@ import com.jaemin.features.domain.entity.User
 import com.jaemin.features.presentation.gallery.view.GalleryFragment
 import com.jaemin.features.presentation.main.contract.MainContract
 import com.jaemin.features.presentation.main.MainOptions
+import com.jaemin.features.presentation.mypage.ui.MyPageFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -48,8 +49,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainContract.View,
             }
         }
         binding.navView.menu.add(R.id.user_group, MainOptions.ADDGALLERY.id(), Menu.NONE, "게시판 추가")
-        binding.navView.menu.add(R.id.user_group, MainOptions.LOGOUT.id(), Menu.NONE, "마이페이지")
-        binding.navView.menu.add(R.id.user_group, MainOptions.MYPAGE.id(), Menu.NONE, "로그아웃")
+        binding.navView.menu.add(R.id.user_group, MainOptions.MYPAGE.id(), Menu.NONE, "마이페이지")
+        binding.navView.menu.add(R.id.user_group, MainOptions.LOGOUT.id(), Menu.NONE, "로그아웃")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -94,10 +95,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainContract.View,
             0 -> {
             }
             MainOptions.ADDGALLERY.id() -> {
+//                supportFragmentManager.beginTransaction().addToBackStack(null)
+//                    .replace(R.id.main_fragment, GalleryFragment().apply {
+//                        arguments = Bundle().apply {
+//                            putString("galleryId", item.titleCondensed.toString())
+//                        }
+//                    }).commit()
             }
             MainOptions.LOGOUT.id() -> {
             }
             MainOptions.MYPAGE.id() -> {
+                supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.main_drawer_layout, MyPageFragment()).commit()
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
             }
             else -> {
                 supportFragmentManager.beginTransaction().addToBackStack(null)

@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class MainRepositoryImpl(private val mainApi: MainApi , private val userApi: UserApi) : MainRepository {
+class MainRepositoryImpl(private val mainApi: MainApi, private val userApi: UserApi) : MainRepository {
 
     override fun getDefaultGalleries(): Single<List<DefaultGallery>> {
 
