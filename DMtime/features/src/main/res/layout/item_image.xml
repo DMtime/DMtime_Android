@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/post_img"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:paddingEnd="5dp"

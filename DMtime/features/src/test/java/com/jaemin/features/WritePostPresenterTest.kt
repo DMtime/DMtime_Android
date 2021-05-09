@@ -33,12 +33,12 @@ class WritePostPresenterTest : BaseTest(){
     }
 
     @Test
-    fun writePostSuccess(){
+    fun `(Given) 글 (When) 글 작성 시 (Then) 작성 성공 메시지 표시`(){
         val writtenPost = WrittenPost(false, listOf(),"d","d")
-        `when`(postRepository.writePost(writtenPost)).thenReturn(Single.just(true))
+        `when`(postRepository.writePost(Pair("test",writtenPost))).thenReturn(Single.just(true))
 
 
-        writePostPresenter.onClickWritePostButton(writtenPost)
+        writePostPresenter.onClickWritePostButton(Pair("test",writtenPost))
 
 
         verify(writePostView).showSuccessMessage()

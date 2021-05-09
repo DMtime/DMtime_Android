@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sign_up_layout"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.signup.view.SignUpFragment">
+    <TextView
+        android:id="@+id/sign_up_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="75dp"
+        android:text="@string/sign_up_title_tv"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+            android:id="@+id/email_et_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_edittext_background"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_title_tv">
+
+        <EditText
+                android:id="@+id/email_et"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:layout_weight="11"
+                android:background="@null"
+                android:textSize="16sp"
+                android:hint="이메일" />
+
+        <Button
+                android:id="@+id/duplicate_email_check_btn"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:text="인증"
+                android:textStyle="bold"
+                />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:id="@+id/username_et_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_edittext_background"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/email_et_layout"
+            app:layout_constraintTop_toBottomOf="@+id/email_message_tv">
+
+        <EditText
+                android:id="@+id/username_et"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="11"
+                android:background="@null"
+                android:hint="유저이름"
+                android:inputType="textEmailAddress"
+                android:textSize="16sp" />
+
+        <Button
+                android:id="@+id/duplicate_username_check_btn"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:text="인증"
+                android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/password_et_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_edittext_background"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/username_message_tv">
+
+        <EditText
+                android:id="@+id/password_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="비밀번호"
+                android:inputType="textPassword"
+                android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/password_confirm_et_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_edittext_background"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/email_et_layout"
+            app:layout_constraintStart_toStartOf="@+id/email_et_layout"
+            app:layout_constraintTop_toBottomOf="@+id/password_message_tv">
+
+        <EditText
+                android:id="@+id/password_confirm_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="비밀번호 확인"
+                android:inputType="textPassword"
+                android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/next_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:padding="15dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:background="@drawable/green_border"
+        android:textColor="#A6DE57"
+        android:text="@string/next_btn"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/password_et_layout"
+        app:layout_constraintStart_toStartOf="@+id/password_et_layout"
+        app:layout_constraintTop_toBottomOf="@+id/password_confirm_et_layout" />
+
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_arrow_previous"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/email_message_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/email_et_layout"
+            app:layout_constraintTop_toBottomOf="@+id/email_et_layout" />
+
+    <TextView
+            android:id="@+id/username_message_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/username_et_layout"
+            app:layout_constraintTop_toBottomOf="@+id/username_et_layout" />
+
+    <TextView
+            android:id="@+id/password_confirm_message_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/password_confirm_et_layout"
+            app:layout_constraintTop_toBottomOf="@+id/password_confirm_et_layout" />
+
+    <TextView
+            android:id="@+id/password_message_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/password_et_layout"
+            app:layout_constraintTop_toBottomOf="@+id/password_et_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

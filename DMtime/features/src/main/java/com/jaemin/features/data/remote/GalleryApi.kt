@@ -8,8 +8,8 @@ import retrofit2.http.Query
 
 interface GalleryApi {
     @GET("board/galleries")
-    fun getGalleries(@Query("gallery-type") galleryType: Int) : Single<List<GalleryResponse>>
+    fun getGalleries(@Query("gallery-type") galleryType: Int): Single<List<GalleryResponse>>
 
     @GET("board/galleries/{gallery-id}")
-    fun getGallery(@Path("gallery-id") galleryId: String) : Single<GalleryResponse>
+    fun getGallery(@Path("gallery-id") galleryId: String): Single<GalleryResponse>
 }

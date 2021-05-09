@@ -14,7 +14,7 @@ interface WritePostContract {
 
         fun isAnonymous() : Boolean
 
-        fun getTitle() : String
+        fun getPostTitle() : String
 
         fun getContents() : String
 
@@ -25,7 +25,7 @@ interface WritePostContract {
 
         fun onClickAttachImageButton()
 
-        fun onClickWritePostButton(writtenPost: WrittenPost)
+        fun onClickWritePostButton(writtenPost: Pair<String, WrittenPost>)
 
     }
 }

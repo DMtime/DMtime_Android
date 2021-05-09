@@ -4,7 +4,6 @@ import com.jaemin.features.domain.entity.WrittenPost
 import com.jaemin.features.domain.usecase.WritePostsUseCase
 import com.jaemin.features.presentation.post.contract.WritePostContract
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
-import splitties.toast.toast
 
 class WritePostPresenter(
     private val writePostView : WritePostContract.View,
@@ -14,7 +13,7 @@ class WritePostPresenter(
         writePostView.requestStoragePermission()
     }
 
-    override fun onClickWritePostButton(writtenPost: WrittenPost) {
+    override fun onClickWritePostButton(writtenPost: Pair<String, WrittenPost>) {
         writePostsUseCase.execute(writtenPost, object : DisposableSingleObserver<Boolean>() {
             override fun onSuccess(t: Boolean) {
                 writePostView.showSuccessMessage()
