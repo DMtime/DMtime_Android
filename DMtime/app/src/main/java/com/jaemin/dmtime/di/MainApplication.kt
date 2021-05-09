@@ -47,7 +47,8 @@ class MainApplication : Application() {
                     commentsModule,
                     authModule,
                     userModule,
-                    myPageModule
+                    myPageModule,
+                    imageModule
                 )
             )
         }

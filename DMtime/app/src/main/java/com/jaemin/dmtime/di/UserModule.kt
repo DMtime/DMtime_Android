@@ -16,7 +16,7 @@ val userModule = module {
 
     factory { ChangeUserInfoUseCase(get()) }
 
-    factory<UserRepository> { UserRepositoryImpl(get()) }
+    factory<UserRepository> { UserRepositoryImpl(get(),get()) }
 
 
 }

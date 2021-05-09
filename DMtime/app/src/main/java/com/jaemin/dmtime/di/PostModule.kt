@@ -22,7 +22,7 @@ val postModule = module {
     factory { providePostApi(get()) }
 
     factory<PostContract.Presenter> { (view: PostContract.View) -> PostPresenter(get(), get(),get(),view) }
-    factory<PostRepository> { PostRepositoryImpl(get()) }
+    factory<PostRepository> { PostRepositoryImpl(get(),get()) }
 
     factory<WritePostContract.Presenter> { (view: WritePostContract.View) -> WritePostPresenter(view,get()) }
 
