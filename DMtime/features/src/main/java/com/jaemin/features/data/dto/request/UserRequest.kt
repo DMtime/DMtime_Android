@@ -12,4 +12,4 @@ data class UserRequest(
 )
 
 fun User.toData() =
-    UserRequest(this.userExplain, this.profileImage, this.username)
+    UserRequest(this.explain, this.profileImage, this.username)

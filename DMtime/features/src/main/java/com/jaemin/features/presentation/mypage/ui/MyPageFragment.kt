@@ -88,9 +88,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(), MyPageContract.Vie
     override fun setUserProfile(user: User) {
         currentUser = user
         binding.usernameTv.text = user.username
-        binding.userExplainTv.text = user.userExplain ?: "설명이 없습니다."
+        binding.userExplainTv.text = user.explain ?: "설명이 없습니다."
         binding.usernameEditEt.setText(user.username)
-        binding.userExplainEditEt.setText(user.userExplain ?: "")
+        binding.userExplainEditEt.setText(user.explain ?: "")
         Glide.with(requireActivity().applicationContext)
             .load("https://dmtimebucket.s3.ap-northeast-2.amazonaws.com/images/${user.profileImage}")
             .circleCrop()
