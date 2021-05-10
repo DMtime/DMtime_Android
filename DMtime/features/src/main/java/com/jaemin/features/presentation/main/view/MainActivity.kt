@@ -95,19 +95,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainContract.View,
             0 -> {
             }
             MainOptions.ADDGALLERY.id() -> {
-//                supportFragmentManager.beginTransaction().addToBackStack(null)
-//                    .replace(R.id.main_fragment, GalleryFragment().apply {
-//                        arguments = Bundle().apply {
-//                            putString("galleryId", item.titleCondensed.toString())
-//                        }
-//                    }).commit()
+                supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.main_drawer_layout, AddGalleryFragment()).commit()
             }
             MainOptions.LOGOUT.id() -> {
             }
             MainOptions.MYPAGE.id() -> {
                 supportFragmentManager.beginTransaction().addToBackStack(null)
                     .replace(R.id.main_drawer_layout, MyPageFragment()).commit()
-                binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
             }
             else -> {
                 supportFragmentManager.beginTransaction().addToBackStack(null)
@@ -116,9 +111,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainContract.View,
                             putString("galleryId", item.titleCondensed.toString())
                         }
                     }).commit()
-                binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
             }
         }
+        binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

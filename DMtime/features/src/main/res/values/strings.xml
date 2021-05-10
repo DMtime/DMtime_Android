@@ -16,4 +16,5 @@
     <string name="sign_up_title_tv">회원가입</string>
     <string name="next_btn">다음</string>
     <string name="sign_up_btn">회원가입하기</string>
+    <string name="gallery_explain_et">게시판 설명</string>
 </resources>
