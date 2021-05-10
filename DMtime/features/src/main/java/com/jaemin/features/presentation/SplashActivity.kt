@@ -11,7 +11,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_layout, LoginFragment())
-                .addToBackStack(null)
-                .commit()
+            .commit()
     }
 }
