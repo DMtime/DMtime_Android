@@ -1,45 +1,44 @@
 package com.jaemin.features.presentation.main.presenter
 
-import android.util.Log
-import com.jaemin.features.domain.entity.DefaultGallery
-import com.jaemin.features.domain.usecase.GetDefaultGalleriesUseCase
+import com.jaemin.features.domain.entity.Gallery
+import com.jaemin.features.domain.entity.User
+import com.jaemin.features.domain.usecase.GetAllGalleriesUseCase
+import com.jaemin.features.domain.usecase.GetMyInfoUseCase
 import com.jaemin.features.presentation.main.contract.MainContract
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 
 
 class MainPresenter(
-    private val mainView: MainContract.View,
-    private val getDefaultGalleriesUseCase: GetDefaultGalleriesUseCase,
+    private val mainView : MainContract.View,
+    private val getMyInfoUseCase: GetMyInfoUseCase,
+    private val getAllGalleriesUseCase: GetAllGalleriesUseCase
 ) : MainContract.Presenter {
 
     override fun onCreate() {
-        getDefaultGalleriesUseCase.execute(
-            Unit,
-            object : DisposableSingleObserver<List<DefaultGallery>>() {
-                override fun onSuccess(galleries: List<DefaultGallery>) {
-                    mainView.setDefaultGalleries(galleries)
-                }
+        getMyInfoUseCase.execute(Unit, object : DisposableSingleObserver<User>(){
+            override fun onSuccess(user: User) {
+                mainView.setUserInfo(user)
+            }
 
-                override fun onError(e: Throwable) {
-                    e.printStackTrace()
-                    mainView.setDefaultGalleriesFailed()
-                }
-            })
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+
+        })
+        getAllGalleriesUseCase.execute(Unit, object : DisposableSingleObserver<List<Gallery>>(){
+            override fun onSuccess(galleries: List<Gallery>) {
+                mainView.setGalleries(galleries)
+            }
+
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+
+        })
+
     }
 
-    override fun onClickPost(postId: Int) {
-        mainView.moveToPost(postId)
-    }
+    override fun onClickGalleryMenu(menuId: Int) {
 
-    override fun onClickGallery(galleryId: String) {
-        mainView.moveToGallery(galleryId)
-    }
-
-    override fun onPause() {
-        getDefaultGalleriesUseCase.clear()
-    }
-
-    override fun onDestroy() {
-        getDefaultGalleriesUseCase.dispose()
     }
 }

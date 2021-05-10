@@ -22,11 +22,10 @@ interface PostApi {
     ): Completable
 
     @POST("board/posts")
-    fun writePost(@Query("gallery-id") galleryId : String,@Body writtenPostRequest: WrittenPostRequest): Completable
-
-    @Multipart
-    @POST("images")
-    fun postImage(@Part image: MultipartBody.Part): Single<Image>
+    fun writePost(
+        @Query("gallery-id") galleryId: String,
+        @Body writtenPostRequest: WrittenPostRequest
+    ): Completable
 
     @POST("board/posts/{post-id}/like")
     fun postLike(@Path("post-id") postId: Int): Completable

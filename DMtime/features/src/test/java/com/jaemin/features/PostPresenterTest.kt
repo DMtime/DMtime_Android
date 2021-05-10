@@ -41,7 +41,7 @@ class PostPresenterTest : BaseTest(){
     }
 
     @Test
-    fun getPostSuccess(){
+    fun `(Given) 상세 게시글 조회 시 (When) 상세 게시글 화면 진입 시(Then) 게시글 값 설정`(){
         val post =Post(
             content = "test",
             isAnonymous = false,
@@ -66,7 +66,7 @@ class PostPresenterTest : BaseTest(){
     }
 
     @Test
-    fun getPostFailed(){
+    fun `(Given) 상세 게시글 조회 실패 (When) 상세 게시글 화면 진입 시 (Then) 오류 화면 표시`(){
 
         `when`(postRepository.getPost(1)).thenReturn(Single.error(Exception("testException")))
         postPresenter.onCreate()

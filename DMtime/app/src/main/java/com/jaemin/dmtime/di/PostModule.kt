@@ -19,14 +19,10 @@ val postModule = module {
     fun providePostApi(retrofit: Retrofit): PostApi =
         retrofit.create(PostApi::class.java)
 
-    fun providePostsApi(retrofit: Retrofit): PostsApi =
-        retrofit.create(PostsApi::class.java)
-
     factory { providePostApi(get()) }
-    factory { providePostsApi(get()) }
 
     factory<PostContract.Presenter> { (view: PostContract.View) -> PostPresenter(get(), get(),get(),view) }
-    factory<PostRepository> { PostRepositoryImpl(get()) }
+    factory<PostRepository> { PostRepositoryImpl(get(),get()) }
 
     factory<WritePostContract.Presenter> { (view: WritePostContract.View) -> WritePostPresenter(view,get()) }
 

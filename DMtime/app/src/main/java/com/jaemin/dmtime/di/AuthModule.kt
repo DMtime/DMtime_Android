@@ -18,7 +18,7 @@ val authModule = module {
             retrofit.create(AuthApi::class.java)
     factory { provideAuthApi(get()) }
 
-    factory<AuthRepository> { AuthRepositoryImpl(get())  }
+    factory<AuthRepository> { AuthRepositoryImpl(get(),get())  }
     factory<LoginContract.Presenter> { (view: LoginContract.View) -> LoginPresenter(view, get()) }
     factory<SignUpContract.Presenter> { (view: SignUpContract.View) -> SignUpPresenter(view, get(),get(),get()) }
     factory<EmailVerificationContract.Presenter> { (view: EmailVerificationContract.View) -> EmailVerificationPresenter(view, get()) }

@@ -5,17 +5,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.jaemin.base.BaseActivity
 import com.jaemin.features.databinding.ActivityWritePostBinding
 import com.jaemin.features.domain.entity.WrittenPost
-import com.jaemin.features.presentation.post.adapter.PostImageAdapter
 import com.jaemin.features.presentation.post.adapter.WritePostImageAdapter
 import com.jaemin.features.presentation.post.contract.WritePostContract
-import com.jaemin.features.util.BitmapManager
-import com.jaemin.features.util.FileManager
+import com.jaemin.features.util.FileCreator
+import com.jaemin.features.util.getBitmap
 import es.dmoral.toasty.Toasty
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -30,16 +28,13 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(), WritePostCon
         if (activityResult.resultCode == RESULT_OK) {
             if (activityResult.data != null && activityResult.data!!.data != null) {
                 images.add(
-                    FileManager.getFile(
+                    FileCreator.getFile(
                         this@WritePostActivity,
                         activityResult.data!!.data!!
                     )
                 )
                 writePostImageAdapter.addItem(
-                    BitmapManager.getBitmap(
-                        this@WritePostActivity,
-                        activityResult.data!!.data!!
-                    )!!
+                    activityResult.data!!.data!!.getBitmap(this@WritePostActivity)!!
                 )
             }
         }
@@ -60,7 +55,10 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(), WritePostCon
 
         binding.writePostTv.setOnClickListener {
             writePostPresenter.onClickWritePostButton(
-                WrittenPost(isAnonymous(), getImages(), getContents(), getPostTitle())
+                Pair(
+                    intent.getStringExtra("galleryId")!!,
+                    WrittenPost(isAnonymous(), getImages(), getContents(), getPostTitle())
+                )
             )
         }
 

@@ -12,8 +12,11 @@ import retrofit2.http.Query
 
 interface CommentsApi {
     @GET("board/comments")
-    fun getComments(@Query("post-id") postId: Int) : Single<CommentsResponse>
+    fun getComments(@Query("post-id") postId: Int): Single<CommentsResponse>
 
     @POST("board/comments")
-    fun postComment(@Query("post-id") postId: Int,@Body commentInProgressRequest: CommentInProgressRequest) : Completable
+    fun postComment(
+        @Query("post-id") postId: Int,
+        @Body commentInProgressRequest: CommentInProgressRequest
+    ): Completable
 }

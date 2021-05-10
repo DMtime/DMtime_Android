@@ -16,5 +16,4 @@ interface AuthRepository {
     fun signUp(signUpInfo: SignUpInfo) : Completable
 
     fun verifyEmail(verificationCode: String) : Completable
-
 }

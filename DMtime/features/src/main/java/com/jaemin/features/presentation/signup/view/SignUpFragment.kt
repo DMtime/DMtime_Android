@@ -17,15 +17,11 @@ import com.jaemin.features.presentation.signup.contract.SignUpContract
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
-import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.functions.Cancellable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.koin.android.ext.android.bind
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 
@@ -47,8 +43,6 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(), SignUpContract.Vie
         observeEditText(binding.usernameEt) { username: String -> signUpPresenter.onTypingUsernameEnd(username) }
         observeEditText(binding.passwordEt) { password: String -> signUpPresenter.onTypingPasswordEnd(password) }
         observeEditText(binding.passwordConfirmEt) { passwordConfirm: String -> signUpPresenter.onTypingPasswordConfirmEnd(passwordConfirm) }
-
-
     }
 
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentSignUpBinding {

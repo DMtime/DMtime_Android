@@ -1,19 +1,16 @@
 package com.jaemin.features.presentation.main.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.MotionEventCompat
 import com.jaemin.base.BaseFragment
 import com.jaemin.features.R
-import com.jaemin.features.databinding.FragmentMainBinding
+import com.jaemin.features.databinding.FragmentMainGalleryBinding
 import com.jaemin.features.domain.entity.DefaultGallery
 import com.jaemin.features.presentation.gallery.view.GalleryFragment
 import com.jaemin.features.presentation.main.adapter.DefaultGalleriesAdapter
-import com.jaemin.features.presentation.main.contract.MainContract
+import com.jaemin.features.presentation.main.contract.MainGalleryContract
 import com.jaemin.features.presentation.post.view.PostFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -21,9 +18,9 @@ import splitties.toast.toast
 import timber.log.Timber
 
 
-class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
+class MainGalleryFragment : BaseFragment<FragmentMainGalleryBinding>(), MainGalleryContract.View {
 
-    private val presenter: MainContract.Presenter by inject { parametersOf(this) }
+    private val presenter: MainGalleryContract.Presenter by inject { parametersOf(this) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.defaultGalleriesRv.addItemDecoration(MainRecyclerViewDecoration(30))
@@ -36,8 +33,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), MainContract.View {
         super.onResume()
     }
 
-    override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMainBinding {
-        return FragmentMainBinding.inflate(inflater, container, false)
+    override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMainGalleryBinding {
+        return FragmentMainGalleryBinding.inflate(inflater, container, false)
     }
 
     override fun setDefaultGalleries(defaultGalleries: List<DefaultGallery>) {

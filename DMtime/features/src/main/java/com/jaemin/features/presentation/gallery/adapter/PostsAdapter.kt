@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jaemin.features.databinding.ItemPostsBinding
 import com.jaemin.features.domain.entity.PostPreview
 import com.jaemin.features.presentation.gallery.contract.GalleryContract
+import com.jaemin.features.presentation.mypage.contract.PostsContract
 import timber.log.Timber
 
-class PostsAdapter(private val galleryPresenter: GalleryContract.Presenter, private val posts : MutableList<PostPreview> = mutableListOf()) : RecyclerView.Adapter<PostsViewHolder>() {
+class PostsAdapter(private val postsPresenter: PostsContract.Presenter, private val posts : MutableList<PostPreview> = mutableListOf()) : RecyclerView.Adapter<PostsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemPostsBinding.inflate(inflater, parent, false)
-        return PostsViewHolder(binding, galleryPresenter)
+        return PostsViewHolder(binding, postsPresenter)
     }
 
     override fun onBindViewHolder(holder: PostsViewHolder, position: Int) {
@@ -20,7 +21,6 @@ class PostsAdapter(private val galleryPresenter: GalleryContract.Presenter, priv
         holder.bind(posts[position])
     }
     fun updateItems(posts : List<PostPreview>){
-        this.posts.clear()
         this.posts.addAll(posts)
         notifyDataSetChanged()
     }
@@ -35,11 +35,11 @@ class PostsAdapter(private val galleryPresenter: GalleryContract.Presenter, priv
 
 class PostsViewHolder(
     private val binding: ItemPostsBinding,
-    private val galleryPresenter: GalleryContract.Presenter
+    private val postsPresenter: PostsContract.Presenter
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: PostPreview) {
         binding.postLayout.setOnClickListener {
-            galleryPresenter.onClickPost(post.id)
+            postsPresenter.onClickPost(post.id)
         }
         binding.postTitleTv.text = post.title
         binding.postWriterNameTv.text = post.uploader.username

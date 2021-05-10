@@ -1,4 +1,4 @@
-package com.jaemin.dmtime
+package com.jaemin.features.data
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
