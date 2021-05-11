@@ -29,7 +29,7 @@
 * [Android-CleanArchitecture](https://github.com/android10/Android-CleanArchitecture)
 
 ### 테스트
-* [안드로이드의 테스트~빌드~배포 사이클](https://medium.com/wantedjobs/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B9%8C%EB%93%9C-%EB%B0%B0%ED%8F%AC-%EC%82%AC%EC%9D%B4%ED%81%B4-9d542eda0ef8)
+* [안드로이드의 테스트~ 빌드 ~배포 사이클](https://medium.com/wantedjobs/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B9%8C%EB%93%9C-%EB%B0%B0%ED%8F%AC-%EC%82%AC%EC%9D%B4%ED%81%B4-9d542eda0ef8)
 * [테스트 코드, 안드로이드에서는 어떻게 작성해야 할까?](https://blog.banksalad.com/tech/test-in-banksalad-android/)
 * [Given ~ When ~ Then 규칙](https://martinfowler.com/bliki/GivenWhenThen.html)
 * [Android TDD 적용기](https://speakerdeck.com/sungil/android-tdd-jeogyonggi)
