@@ -2,11 +2,9 @@ package com.jaemin.features.presentation.gallery.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaemin.base.BaseFragment
@@ -21,7 +19,7 @@ import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
-
+var postsChanged = false
 class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.View {
     private val galleryPresenter: GalleryContract.Presenter by inject { parametersOf(this) }
 
@@ -33,6 +31,10 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         postsAdapter = PostsAdapter(galleryPresenter)
         binding.postsRv.adapter = postsAdapter
         galleryPresenter.onCreate()
+        binding.root.setOnRefreshListener {
+            galleryPresenter.onRefresh()
+            binding.root.isRefreshing = false
+        }
 
         binding.postsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -55,6 +57,13 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         binding.galleryNameTv.text = getGalleryId()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (postsChanged) {
+            galleryPresenter.onCreate()
+        }
+    }
+
     override fun setBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -63,7 +72,11 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
     }
 
     override fun setPosts(posts: List<PostPreview>) {
-        postsAdapter.updateItems(posts)
+        postsAdapter.setItems(posts)
+    }
+
+    override fun loadPosts(posts: List<PostPreview>) {
+        postsAdapter.loadItems(posts)
     }
 
     override fun showGetPostsFailedMessage() {
@@ -95,4 +108,8 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>(), GalleryContract.
         binding.galleryProgressBar.visibility = View.GONE
     }
 
+    override fun onDestroy() {
+        galleryPresenter.onDestroy()
+        super.onDestroy()
+    }
 }
