@@ -42,6 +42,8 @@ class PostRepositoryImpl(private val postApi: PostApi,private val imageApi: Imag
             }
     }
 
+    override fun deletePost(postId: Int): Completable = postApi.postDelete(postId)
+
     override fun postLike(postId: Int): Completable = postApi.postLike(postId)
 
     override fun postDislike(postId: Int): Completable = postApi.postDislike(postId)

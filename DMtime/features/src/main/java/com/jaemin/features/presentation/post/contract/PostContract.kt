@@ -1,5 +1,6 @@
 package com.jaemin.features.presentation.post.contract
 
+import com.jaemin.base.BasePresenter
 import com.jaemin.features.domain.entity.Post
 
 interface PostContract {
@@ -25,14 +26,21 @@ interface PostContract {
 
         fun disablePostDislikeButton()
 
+        fun showDeleteButton()
+
+        fun showDeleteSuccessMessage()
+
+        fun goToGallery()
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter {
         fun onCreate()
 
         fun onClickLikeButton()
 
         fun onClickDislikeButton()
+
+        fun onClickPostDelete()
 
         fun onClickPostImage(position : Int)
     }
