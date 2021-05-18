@@ -10,13 +10,32 @@ import com.jaemin.features.domain.requestmodel.SignUpInfo
 import com.jaemin.features.domain.responsemodel.Token
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import timber.log.Timber
 
 class AuthRepositoryImpl(private val authApi : AuthApi, private val sharedPreferencesManager: SharedPreferencesManager) : AuthRepository {
-    override fun login(loginInfo: LoginInfo): Single<Token> =
-            authApi.login(loginInfo.toData()).map {
-                sharedPreferencesManager.saveInfo( it.accessToken,"accessToken")
+    override fun login(loginInfo: Pair<Boolean,LoginInfo>): Single<Token> =
+            authApi.login(loginInfo.second.toData()).map {
+                sharedPreferencesManager.saveToken(it.accessToken)
+                Timber.d(loginInfo.first.toString())
+                sharedPreferencesManager.saveAutoLoginState(loginInfo.first)
                 it.toModel()
             }
+
+    override fun deleteLoginInfo() : Boolean{
+        sharedPreferencesManager.clearToken()
+        sharedPreferencesManager.clearAutoLoginState()
+        if (!sharedPreferencesManager.getAutoLoginState() && sharedPreferencesManager.getToken()=="empty")
+            return true
+        return false
+    }
+
+    override fun autoLogin() : Boolean{
+        if (sharedPreferencesManager.getAutoLoginState()) {
+            Timber.d(sharedPreferencesManager.getToken())
+            return true
+        }
+        return false
+    }
 
     override fun isNotDuplicateEmail(email: String): Single<Boolean> =
             authApi.isNotDuplicateEmail(email).map { it.usable }

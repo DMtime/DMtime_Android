@@ -10,6 +10,8 @@ interface LoginContract {
 
         fun getPassword() : String
 
+        fun getAutoLoginCheckBoxState() : Boolean
+
         fun showIncorrectEmailMessage()
 
 
