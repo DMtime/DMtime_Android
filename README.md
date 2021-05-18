@@ -1,13 +1,11 @@
 # DMtime
+![logo](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F728fbfc5-2c6e-43a7-b664-d7a1e5fa3aec%2FUntitled.png?table=block&id=adbb1ded-3a43-41a7-a22d-991aacda8e9e&width=5120&userId=&cache=v2) 
 [![Build Status](https://app.bitrise.io/app/2c694dc9c1a6641f/status.svg?token=PqgUitZ9yQE2quZ1vwDSCQ&branch=develop)](https://app.bitrise.io/app/2c694dc9c1a6641f)<br/>
 대덕소프트웨어마이스터고등학교 학생들을 위한 익명 커뮤니티 앱입니다.
 
 대덕소프트웨어마이스터고등학교 학교 이메일로만 가입할 수 있으며, 서로의 소식을 나누거나<br/>
 좋거나 안좋은 글들에 대해 댓글과 추천 기능으로 의견을 표현할 수 있습니다  
-
-<br/>
-
-![logo](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F728fbfc5-2c6e-43a7-b664-d7a1e5fa3aec%2FUntitled.png?table=block&id=adbb1ded-3a43-41a7-a22d-991aacda8e9e&width=5120&userId=&cache=v2)  
+ 
 
 ## 기술스택
 * 언어 : Kotlin
