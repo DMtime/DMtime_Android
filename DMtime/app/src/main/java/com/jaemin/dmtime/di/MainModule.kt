@@ -21,7 +21,7 @@ val mainModule = module {
     factory { provideMainApi(get()) }
     factory<MainGalleryContract.Presenter> { (view: MainGalleryContract.View) -> MainGalleryPresenter(view, get()) }
     factory<MainRepository> { MainRepositoryImpl(get(), get()) }
-    factory<MainContract.Presenter> { (view: MainContract.View) -> MainPresenter(view, get(),get()) }
+    factory<MainContract.Presenter> { (view: MainContract.View) -> MainPresenter(view, get(),get(),get()) }
     factory { GetDefaultGalleriesUseCase(get()) }
     factory { GetMyInfoUseCase(get()) }
     factory { GetAllGalleriesUseCase(get()) }

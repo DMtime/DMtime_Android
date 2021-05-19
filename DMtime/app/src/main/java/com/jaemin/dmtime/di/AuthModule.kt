@@ -10,6 +10,8 @@ import com.jaemin.features.presentation.signup.contract.EmailVerificationContrac
 import com.jaemin.features.presentation.signup.contract.SignUpContract
 import com.jaemin.features.presentation.signup.presenter.EmailVerificationPresenter
 import com.jaemin.features.presentation.signup.presenter.SignUpPresenter
+import com.jaemin.features.presentation.splash.contract.AutoLoginContract
+import com.jaemin.features.presentation.splash.presenter.AutoLoginPresenter
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
@@ -22,9 +24,13 @@ val authModule = module {
     factory<LoginContract.Presenter> { (view: LoginContract.View) -> LoginPresenter(view, get()) }
     factory<SignUpContract.Presenter> { (view: SignUpContract.View) -> SignUpPresenter(view, get(),get(),get()) }
     factory<EmailVerificationContract.Presenter> { (view: EmailVerificationContract.View) -> EmailVerificationPresenter(view, get()) }
+    factory<AutoLoginContract.Presenter> { (view: AutoLoginContract.View) -> AutoLoginPresenter(view, get(),get()) }
+
     factory { SignUpUseCase(get()) }
     factory { EmailVerificationUseCase(get()) }
     factory { DuplicateUsernameUseCase(get()) }
     factory { DuplicateEmailUseCase(get())}
     factory { LoginUseCase(get()) }
+    factory { AutoLoginUseCase(get()) }
+    factory { DeleteLoginInfoUseCase(get()) }
 }

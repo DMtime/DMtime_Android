@@ -1,5 +1,6 @@
 package com.jaemin.features.presentation.mypage.contract
 
+import com.jaemin.base.BasePresenter
 import com.jaemin.features.domain.entity.User
 import com.jaemin.features.domain.requestmodel.EditedProfile
 
@@ -47,7 +48,7 @@ interface MyPageContract {
 
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter {
         fun onCreate()
 
         fun onClickProfileEditButton()

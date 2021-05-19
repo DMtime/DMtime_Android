@@ -31,6 +31,10 @@ abstract class UserPostsFragment<Presenter : UserPostsPresenter<UseCase>, UseCas
         postsAdapter = PostsAdapter(userPostsPresenter)
         binding.postsRv.adapter = postsAdapter
         userPostsPresenter.onCreate()
+        binding.root.setOnRefreshListener {
+            userPostsPresenter.onRefresh()
+            binding.root.isRefreshing = false
+        }
 
         binding.postsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -57,9 +61,12 @@ abstract class UserPostsFragment<Presenter : UserPostsPresenter<UseCase>, UseCas
     }
 
     override fun setPosts(posts: List<PostPreview>) {
-        postsAdapter.updateItems(posts)
+        postsAdapter.setItems(posts)
     }
 
+    override fun loadPosts(posts: List<PostPreview>) {
+        postsAdapter.loadItems(posts)
+    }
     override fun showGetPostsFailedMessage() {
     }
 
@@ -87,6 +94,11 @@ abstract class UserPostsFragment<Presenter : UserPostsPresenter<UseCase>, UseCas
 
     override fun hideInitProgressBar() {
         binding.userPostsProgressbar.visibility = View.GONE
+    }
+
+    override fun onDestroy() {
+        userPostsPresenter.onDestroy()
+        super.onDestroy()
     }
 
 }

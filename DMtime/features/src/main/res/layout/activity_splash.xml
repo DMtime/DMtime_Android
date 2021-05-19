@@ -5,8 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_layout"
-        android:background="#A6DE57"
-        tools:context=".SplashActivity">
+        android:background="#A6DE57">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -16,5 +15,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/toolbar_logo" />
+        app:srcCompat="@drawable/ic_toolbar_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

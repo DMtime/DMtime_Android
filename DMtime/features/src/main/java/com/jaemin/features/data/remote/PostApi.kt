@@ -38,4 +38,8 @@ interface PostApi {
 
     @DELETE("board/posts/{post-id}/dislike")
     fun postDislikeCancel(@Path("post-id") postId: Int): Completable
+
+    @DELETE("board/posts/{post-id}")
+    fun postDelete(@Path("post-id") postId: Int): Completable
+
 }

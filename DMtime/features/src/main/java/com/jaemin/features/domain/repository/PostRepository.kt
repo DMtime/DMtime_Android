@@ -13,6 +13,8 @@ interface PostRepository {
 
     fun writePost(writtenPost: Pair<String, WrittenPost>): Single<Boolean>
 
+    fun deletePost(postId: Int): Completable
+
     fun postLike(postId: Int): Completable
 
     fun postDislike(postId: Int): Completable

@@ -7,7 +7,11 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
 interface AuthRepository {
-    fun login(loginInfo: LoginInfo) : Single<Token>
+    fun login(loginInfo: Pair<Boolean,LoginInfo>) : Single<Token>
+
+    fun deleteLoginInfo() : Boolean
+
+    fun autoLogin() : Boolean
 
     fun isNotDuplicateEmail(email : String) : Single<Boolean>
 

@@ -25,10 +25,10 @@
 
         <ImageView
                 android:id="@+id/main_logo_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/toolbar_logo"
+                android:src="@drawable/ic_toolbar_logo"
                 android:elevation="11dp"
                 app:layout_constraintBottom_toBottomOf="@+id/main_toolbar"
                 app:layout_constraintEnd_toStartOf="@+id/main_title_tv"

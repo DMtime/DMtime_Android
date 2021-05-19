@@ -12,11 +12,13 @@ class MainGalleryPresenter(
 ) : MainGalleryContract.Presenter {
 
     override fun onCreate() {
+        mainGalleryView.showProgressBar()
         getDefaultGalleriesUseCase.execute(
             Unit,
             object : DisposableSingleObserver<List<DefaultGallery>>() {
                 override fun onSuccess(galleries: List<DefaultGallery>) {
                     mainGalleryView.setDefaultGalleries(galleries)
+                    mainGalleryView.hideProgressBar()
                 }
 
                 override fun onError(e: Throwable) {

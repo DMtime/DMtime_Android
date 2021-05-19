@@ -20,7 +20,8 @@ class PostsAdapter(private val postsPresenter: PostsContract.Presenter, private 
         Timber.d(position.toString())
         holder.bind(posts[position])
     }
-    fun updateItems(posts : List<PostPreview>){
+    fun setItems(posts : List<PostPreview>){
+        this.posts.clear()
         this.posts.addAll(posts)
         notifyDataSetChanged()
     }

@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import com.jaemin.base.BaseActivity
 import com.jaemin.features.databinding.ActivityWritePostBinding
 import com.jaemin.features.domain.entity.WrittenPost
+import com.jaemin.features.presentation.gallery.view.postsChanged
 import com.jaemin.features.presentation.post.adapter.WritePostImageAdapter
 import com.jaemin.features.presentation.post.contract.WritePostContract
 import com.jaemin.features.util.FileCreator
@@ -85,6 +86,7 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>(), WritePostCon
 
     override fun showSuccessMessage() {
         Toasty.success(this, "글을 등록했습니다.", Toast.LENGTH_SHORT, true).show()
+        postsChanged = true
         finish()
     }
 
