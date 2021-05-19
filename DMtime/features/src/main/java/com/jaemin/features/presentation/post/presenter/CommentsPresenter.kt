@@ -3,6 +3,7 @@ package com.jaemin.features.presentation.post.presenter
 import com.jaemin.features.domain.entity.Comment
 import com.jaemin.features.domain.entity.CommentInProgress
 import com.jaemin.features.domain.entity.Comments
+import com.jaemin.features.domain.usecase.DeleteCommentUseCase
 import com.jaemin.features.domain.usecase.GetCommentsUseCase
 import com.jaemin.features.domain.usecase.WriteCommentUseCase
 import com.jaemin.features.presentation.post.contract.CommentsContract
@@ -11,6 +12,7 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver
 class CommentsPresenter(
     private val getCommentsUseCase: GetCommentsUseCase,
     private val writeCommentUseCase: WriteCommentUseCase,
+    private val deleteCommentUseCase: DeleteCommentUseCase,
     private val commentsView: CommentsContract.View
 ) : CommentsContract.Presenter {
     private val postId by lazy {
@@ -58,6 +60,19 @@ class CommentsPresenter(
         })
     }
 
+    override fun onClickCommentDeleteButton(commentId: Int) {
+        deleteCommentUseCase.execute(commentId,object : DisposableSingleObserver<Unit>(){
+            override fun onSuccess(t: Unit) {
+                getComments(postId)
+            }
+
+            override fun onError(e: Throwable?) {
+
+            }
+
+        })
+    }
+
     override fun onClickReplyCommentButton(replyComment: CommentInProgress) {
         writeCommentUseCase.execute(Pair(postId,replyComment),object : DisposableSingleObserver<Boolean>(){
             override fun onSuccess(t: Boolean) {
@@ -73,6 +88,12 @@ class CommentsPresenter(
 
 
     override fun onClickCommentReportButton() {
+    }
+
+    override fun onDestroy() {
+        deleteCommentUseCase.dispose()
+        getCommentsUseCase.dispose()
+        writeCommentUseCase.dispose()
     }
 
 

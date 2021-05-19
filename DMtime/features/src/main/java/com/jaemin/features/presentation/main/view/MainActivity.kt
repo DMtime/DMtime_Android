@@ -1,5 +1,6 @@
 package com.jaemin.features.presentation.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,10 +15,12 @@ import com.jaemin.features.R
 import com.jaemin.features.databinding.ActivityMainBinding
 import com.jaemin.features.domain.entity.Gallery
 import com.jaemin.features.domain.entity.User
+import com.jaemin.features.presentation.splash.SplashActivity
 import com.jaemin.features.presentation.gallery.view.GalleryFragment
 import com.jaemin.features.presentation.main.contract.MainContract
 import com.jaemin.features.presentation.main.MainOptions
 import com.jaemin.features.presentation.mypage.ui.MyPageFragment
+import es.dmoral.toasty.Toasty
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -79,6 +82,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainContract.View,
             user.username
     }
 
+    override fun goToLogin() {
+        finish()
+        startActivity(Intent(this, SplashActivity::class.java))
+    }
+
+    override fun goToGallery(galleryId: String) {
+        supportFragmentManager.beginTransaction().addToBackStack(null)
+            .replace(R.id.main_fragment, GalleryFragment().apply {
+                arguments = Bundle().apply {
+                    putString("galleryId", galleryId)
+                }
+            }).commit()    }
+
     private fun initView() {
         setSupportActionBar(binding.mainToolbar)
         supportActionBar!!.title = ""
@@ -95,30 +111,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainContract.View,
             0 -> {
             }
             MainOptions.ADDGALLERY.id() -> {
-//                supportFragmentManager.beginTransaction().addToBackStack(null)
-//                    .replace(R.id.main_fragment, GalleryFragment().apply {
-//                        arguments = Bundle().apply {
-//                            putString("galleryId", item.titleCondensed.toString())
-//                        }
-//                    }).commit()
+                supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.main_drawer_layout, AddGalleryFragment()).commit()
             }
             MainOptions.LOGOUT.id() -> {
+                Toasty.normal(this,"로그아웃 하셨습니다").show()
+                mainPresenter.onClickLogOut()
             }
             MainOptions.MYPAGE.id() -> {
                 supportFragmentManager.beginTransaction().addToBackStack(null)
                     .replace(R.id.main_drawer_layout, MyPageFragment()).commit()
-                binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
             }
             else -> {
-                supportFragmentManager.beginTransaction().addToBackStack(null)
-                    .replace(R.id.main_fragment, GalleryFragment().apply {
-                        arguments = Bundle().apply {
-                            putString("galleryId", item.titleCondensed.toString())
-                        }
-                    }).commit()
-                binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
+                mainPresenter.onClickGallery(item.titleCondensed.toString())
             }
         }
+        binding.mainDrawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

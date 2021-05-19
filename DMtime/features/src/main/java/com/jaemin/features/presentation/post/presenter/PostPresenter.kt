@@ -12,6 +12,7 @@ class PostPresenter(
     private val getPostUseCase: GetPostUseCase,
     private val postLikeUseCase: PostLikeUseCase,
     private val postDislikeUseCase: PostDislikeUseCase,
+    private val deletePostUseCase: DeletePostUseCase,
     private val postView: PostContract.View
 ) : PostContract.Presenter {
     private val postId by lazy {
@@ -28,6 +29,8 @@ class PostPresenter(
                 likes = post.numberOfLikes
                 dislikes = post.numberOfDislikes
                 myReaction = post.myReaction
+                if (post.isMine)
+                    postView.showDeleteButton()
                 if (post.myReaction == REACTION_LIKE)
                     postView.disablePostLikeButton()
                 if(post.myReaction == REACTION_DISLIKE)
@@ -106,9 +109,28 @@ class PostPresenter(
         })
     }
 
+    override fun onClickPostDelete() {
+        deletePostUseCase.execute(postId, object : DisposableSingleObserver<Unit>(){
+            override fun onSuccess(t: Unit) {
+                postView.showDeleteSuccessMessage()
+                postView.goToGallery()
+            }
+
+            override fun onError(e: Throwable) {
+
+            }
+
+        })
+    }
+
     override fun onClickPostImage(position: Int) {
         postView.showImage(position)
     }
 
+    override fun onDestroy() {
+        getPostUseCase.dispose()
+        postDislikeUseCase.dispose()
+        postLikeUseCase.dispose()
+    }
 
 }

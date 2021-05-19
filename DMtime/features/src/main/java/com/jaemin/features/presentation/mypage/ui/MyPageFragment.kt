@@ -145,6 +145,11 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(), MyPageContract.Vie
         }
     }
 
+    override fun onDestroy() {
+        myPagePresenter.onDestroy()
+        super.onDestroy()
+    }
+
     override fun setUserProfileImage() {
 
     }

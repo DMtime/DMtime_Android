@@ -13,6 +13,7 @@ import com.jaemin.features.databinding.FragmentPostBinding
 import com.jaemin.features.domain.entity.Comment
 import com.jaemin.features.domain.entity.CommentInProgress
 import com.jaemin.features.domain.entity.Post
+import com.jaemin.features.presentation.gallery.view.postsChanged
 import com.jaemin.features.presentation.post.contract.CommentsContract
 import com.jaemin.features.presentation.post.contract.PostContract
 import com.jaemin.features.presentation.post.adapter.PostCommentAdapter
@@ -20,6 +21,7 @@ import com.jaemin.features.presentation.post.adapter.PostImageAdapter
 import es.dmoral.toasty.Toasty
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 
 
 class PostFragment : BaseFragment<FragmentPostBinding>(), PostContract.View, CommentsContract.View {
@@ -44,7 +46,9 @@ class PostFragment : BaseFragment<FragmentPostBinding>(), PostContract.View, Com
         binding.postDetailBackBtn.setOnClickListener {
             requireActivity().onBackPressed()
         }
-
+        binding.postDeleteTv.setOnClickListener {
+            postPresenter.onClickPostDelete()
+        }
         binding.postCommentConfirmTv.setOnClickListener {
             commentsPresenter.onClickCommentButton(getCommentInProgress())
         }
@@ -115,6 +119,19 @@ class PostFragment : BaseFragment<FragmentPostBinding>(), PostContract.View, Com
         binding.postDislikeImg.setImageDrawable(ContextCompat.getDrawable(requireActivity(),R.drawable.ic_dislike_filled))
     }
 
+    override fun showDeleteButton() {
+        binding.postDeleteTv.visibility = View.VISIBLE
+    }
+
+    override fun showDeleteSuccessMessage() {
+        Toasty.success(requireActivity(), "댓글을 삭제하셨습니다", Toasty.LENGTH_SHORT).show()
+    }
+
+    override fun goToGallery() {
+        requireActivity().onBackPressed()
+        postsChanged = true
+    }
+
     override fun setComments(comments: List<Comment>) {
         (binding.commentsRv.adapter as PostCommentAdapter).updateItems(comments)
     }
@@ -141,4 +158,11 @@ class PostFragment : BaseFragment<FragmentPostBinding>(), PostContract.View, Com
     override fun clearCommentContent() {
         binding.postCommentEt.text.clear()
     }
+
+    override fun onDestroy() {
+        commentsPresenter.onDestroy()
+        postPresenter.onDestroy()
+        super.onDestroy()
+    }
+
 }

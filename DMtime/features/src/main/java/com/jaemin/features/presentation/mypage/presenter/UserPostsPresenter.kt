@@ -31,15 +31,23 @@ open class UserPostsPresenter<T : UserPostsUseCase>(
     override fun onLoadMore() {
         getPostsUseCase.execute(Pair(++page, username), object : DisposableSingleObserver<Posts>(){
             override fun onSuccess(posts: Posts) {
-                postsView.setPosts(posts.posts)
+                postsView.loadPosts(posts.posts)
             }
             override fun onError(e: Throwable) {
                 postsView.showGetPostsFailedMessage()
             }
         })    }
 
+    override fun onDestroy() {
+        getPostsUseCase.dispose()
+    }
+
     override fun onClickPost(postId: Int) {
         postsView.moveToPost(postId)
 
+    }
+
+    override fun onRefresh() {
+        onCreate()
     }
 }

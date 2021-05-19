@@ -6,6 +6,7 @@ import com.jaemin.features.data.remote.CommentsApi
 import com.jaemin.features.domain.entity.CommentInProgress
 import com.jaemin.features.domain.entity.Comments
 import com.jaemin.features.domain.repository.CommentsRepository
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
 class CommentsRepositoryImpl(private val commentsApi: CommentsApi) : CommentsRepository {
@@ -17,5 +18,8 @@ class CommentsRepositoryImpl(private val commentsApi: CommentsApi) : CommentsRep
     override fun writeComment(comment: Pair<Int, CommentInProgress>): Single<Boolean> =
         commentsApi.postComment(comment.first, comment.second.toData()).toSingleDefault(true)
             .onErrorReturnItem(false)
+
+    override fun deleteComment(commentId: Int): Completable =
+        commentsApi.deleteComment(commentId)
 
 }

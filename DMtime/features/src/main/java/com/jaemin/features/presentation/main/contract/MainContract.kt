@@ -8,12 +8,18 @@ interface MainContract {
         fun setGalleries(galleries: List<Gallery>)
 
         fun setUserInfo(user: User)
+
+        fun goToLogin()
+
+        fun goToGallery(galleryId : String)
     }
 
     interface Presenter {
         fun onCreate()
 
-        fun onClickGalleryMenu(menuId : Int)
+        fun onClickLogOut()
+
+        fun onClickGallery(galleryId: String)
     }
 
 

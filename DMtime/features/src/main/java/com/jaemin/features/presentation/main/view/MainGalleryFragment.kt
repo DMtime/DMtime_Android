@@ -25,7 +25,10 @@ class MainGalleryFragment : BaseFragment<FragmentMainGalleryBinding>(), MainGall
         super.onViewCreated(view, savedInstanceState)
         binding.defaultGalleriesRv.addItemDecoration(MainRecyclerViewDecoration(30))
         binding.defaultGalleriesRv.adapter = DefaultGalleriesAdapter(presenter)
-
+        binding.root.setOnRefreshListener {
+            presenter.onCreate()
+            binding.root.isRefreshing = false
+        }
     }
 
     override fun onResume() {
@@ -72,6 +75,14 @@ class MainGalleryFragment : BaseFragment<FragmentMainGalleryBinding>(), MainGall
             })
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun showProgressBar() {
+        binding.mainProgressbar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        binding.mainProgressbar.visibility = View.GONE
     }
 
     override fun onPause() {

@@ -46,7 +46,7 @@ class LoginPresenterTest : BaseTest() {
         `when`(loginView.getEmail()).thenReturn("youjmen@dsm.hs.kr")
         `when`(loginView.getPassword()).thenReturn("12345678!@")
 
-        `when`(authRepository.login(LoginInfo("youjmen@dsm.hs.kr","12345678!@"))).thenReturn(Single.just(Token("accesstoken")))
+        `when`(authRepository.login(Pair(false,LoginInfo("youjmen@dsm.hs.kr","12345678!@")))).thenReturn(Single.just(Token("accesstoken")))
 
         loginPresenter.onClickLoginButton()
 
