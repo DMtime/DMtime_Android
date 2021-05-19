@@ -1,5 +1,6 @@
 package com.jaemin.features.presentation.post.contract
 
+import com.jaemin.base.BasePresenter
 import com.jaemin.features.domain.entity.Comment
 import com.jaemin.features.domain.entity.CommentInProgress
 
@@ -23,10 +24,12 @@ interface CommentsContract {
 
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter {
         fun onCreate(postId: Int)
 
         fun onClickCommentButton(comment : CommentInProgress)
+
+        fun onClickCommentDeleteButton(commentId : Int)
 
         fun onClickReplyCommentButton(replyComment : CommentInProgress)
 

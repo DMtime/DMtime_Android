@@ -47,6 +47,11 @@ class MyPagePresenter(
         myPageView.showUserExplain()
     }
 
+    override fun onDestroy() {
+        getMyInfoUseCase.dispose()
+        changeUserInfoUseCase.dispose()
+    }
+
     override fun onClickProfileEditSubmitButton(user: Pair<User,EditedProfile>) {
         changeUserInfoUseCase.execute(user, object : DisposableSingleObserver<Unit>(){
             override fun onSuccess(t: Unit) {

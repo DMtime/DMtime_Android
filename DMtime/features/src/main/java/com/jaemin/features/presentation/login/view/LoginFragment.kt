@@ -37,7 +37,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginContract.View{
 
     override fun goToMain() {
 
-        requireActivity().startActivity(Intent(requireActivity(),MainActivity()::class.java))
+        requireActivity().startActivity(Intent(requireActivity(),MainActivity::class.java))
         requireActivity().finish()
     }
 
@@ -45,6 +45,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginContract.View{
 
 
     override fun getPassword(): String = binding.passwordEt.text.toString()
+    override fun getAutoLoginCheckBoxState(): Boolean = binding.autoLoginCheckbox.isChecked
 
     override fun showIncorrectEmailMessage() {
 

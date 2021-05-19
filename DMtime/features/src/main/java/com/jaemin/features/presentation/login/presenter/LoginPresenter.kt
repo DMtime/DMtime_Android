@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver
 class LoginPresenter(private val loginView: LoginContract.View, private val loginUseCase: LoginUseCase) : LoginContract.Presenter {
     override fun onClickLoginButton() {
         if (EmailValidateUseCase.validateEmail(loginView.getEmail())) {
-            loginUseCase.execute(LoginInfo(loginView.getEmail(), loginView.getPassword()), object : DisposableSingleObserver<Token>() {
+            loginUseCase.execute(Pair(loginView.getAutoLoginCheckBoxState(),LoginInfo(loginView.getEmail(), loginView.getPassword())), object : DisposableSingleObserver<Token>() {
                 override fun onSuccess(result: Token) {
                     loginView.goToMain()
                 }

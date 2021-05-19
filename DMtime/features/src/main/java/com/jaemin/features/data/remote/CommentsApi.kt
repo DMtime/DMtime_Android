@@ -4,10 +4,7 @@ import com.jaemin.features.data.dto.request.CommentInProgressRequest
 import com.jaemin.features.data.dto.response.CommentsResponse
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 interface CommentsApi {
@@ -19,4 +16,7 @@ interface CommentsApi {
         @Query("post-id") postId: Int,
         @Body commentInProgressRequest: CommentInProgressRequest
     ): Completable
+
+    @DELETE("board/comments/{comment-id}")
+    fun deleteComment(@Path("comment-id") commentId: Int): Completable
 }

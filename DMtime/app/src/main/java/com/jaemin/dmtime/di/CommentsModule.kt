@@ -3,6 +3,7 @@ package com.jaemin.dmtime.di
 import com.jaemin.features.data.remote.CommentsApi
 import com.jaemin.features.data.repository.CommentsRepositoryImpl
 import com.jaemin.features.domain.repository.CommentsRepository
+import com.jaemin.features.domain.usecase.DeleteCommentUseCase
 import com.jaemin.features.domain.usecase.GetCommentsUseCase
 import com.jaemin.features.domain.usecase.WriteCommentUseCase
 import com.jaemin.features.presentation.post.contract.CommentsContract
@@ -15,9 +16,10 @@ val commentsModule = module {
         retrofit.create(CommentsApi::class.java)
 
     factory { provideCommentsApi(get()) }
-    factory<CommentsContract.Presenter> { (view: CommentsContract.View) -> CommentsPresenter(get(),get(),view) }
+    factory<CommentsContract.Presenter> { (view: CommentsContract.View) -> CommentsPresenter(get(),get(),get(),view) }
     factory<CommentsRepository> { CommentsRepositoryImpl(get()) }
     factory { GetCommentsUseCase(get()) }
     factory { WriteCommentUseCase(get()) }
+    factory { DeleteCommentUseCase(get()) }
 
 }
