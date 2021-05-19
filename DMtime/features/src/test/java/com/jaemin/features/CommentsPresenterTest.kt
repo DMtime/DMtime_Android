@@ -4,6 +4,7 @@ import com.jaemin.features.base.BaseTest
 import com.jaemin.features.domain.entity.CommentInProgress
 import com.jaemin.features.domain.entity.Comments
 import com.jaemin.features.domain.repository.CommentsRepository
+import com.jaemin.features.domain.usecase.DeleteCommentUseCase
 import com.jaemin.features.domain.usecase.GetCommentsUseCase
 import com.jaemin.features.domain.usecase.WriteCommentUseCase
 import com.jaemin.features.presentation.post.contract.CommentsContract
@@ -24,6 +25,9 @@ class CommentsPresenterTest : BaseTest(){
 
     private lateinit var writeCommentUseCase: WriteCommentUseCase
 
+    @Mock
+    private lateinit var deleteCommentUseCase: DeleteCommentUseCase
+
     private lateinit var commentsPresenter : CommentsPresenter
     @Mock
     private lateinit var commentsView : CommentsContract.View
@@ -35,7 +39,7 @@ class CommentsPresenterTest : BaseTest(){
     override fun before() {
         super.before()
         writeCommentUseCase = WriteCommentUseCase(commentsRepository)
-        commentsPresenter = CommentsPresenter(getCommentsUseCase, writeCommentUseCase, commentsView)
+        commentsPresenter = CommentsPresenter(getCommentsUseCase, writeCommentUseCase, deleteCommentUseCase,commentsView)
     }
 
     @Test

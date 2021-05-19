@@ -5,6 +5,7 @@ import com.jaemin.features.domain.entity.Gallery
 import com.jaemin.features.domain.entity.Post
 import com.jaemin.features.domain.entity.Uploader
 import com.jaemin.features.domain.repository.PostRepository
+import com.jaemin.features.domain.usecase.DeletePostUseCase
 import com.jaemin.features.domain.usecase.GetPostUseCase
 import com.jaemin.features.domain.usecase.PostDislikeUseCase
 import com.jaemin.features.domain.usecase.PostLikeUseCase
@@ -23,8 +24,13 @@ class PostPresenterTest : BaseTest(){
     private lateinit var postView: PostContract.View
 
     private lateinit var getPostUseCase: GetPostUseCase
+
     private lateinit var postLikeUseCase: PostLikeUseCase
+
     private lateinit var postDislikeUseCase: PostDislikeUseCase
+
+    @Mock
+    private lateinit var postDeletePostUseCase: DeletePostUseCase
 
     private lateinit var postPresenter: PostContract.Presenter
     @Mock
@@ -36,7 +42,7 @@ class PostPresenterTest : BaseTest(){
         getPostUseCase= GetPostUseCase(postRepository)
         postLikeUseCase = PostLikeUseCase(postRepository)
         postDislikeUseCase = PostDislikeUseCase(postRepository)
-        postPresenter = PostPresenter(getPostUseCase, postLikeUseCase, postDislikeUseCase, postView)
+        postPresenter = PostPresenter(getPostUseCase, postLikeUseCase, postDislikeUseCase, postDeletePostUseCase,postView)
         `when`(postView.getPostId()).thenReturn(1)
     }
 
